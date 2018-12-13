@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yx.pos.dao.SysCodeDao">
+    <resultMap id="SysCode" type="com.yx.pos.model.SysCode">
+		<result property= "codeType" column="code_type" jdbcType="VARCHAR" />
+		<result property= "codeNo" column="code_no" jdbcType="VARCHAR" />
+		<result property= "codeName" column="code_name" jdbcType="VARCHAR" />
+		<result property= "codeCharflag" column="code_charflag" jdbcType="VARCHAR" />
+		<result property= "codeNumflag" column="code_numflag" jdbcType="NUMERIC" />
+		<result property= "memo" column="memo" jdbcType="VARCHAR" />
+		<result property= "ver" column="ver" jdbcType="VARCHAR" />
+		<result property= "updateFlow" column="update_flow" jdbcType="NUMERIC" />
+		<result property= "isSysFlag" column="IsSysFlag" jdbcType="VARCHAR" />
+		<result property= "updateTime" column="update_time" jdbcType="TIMESTAMP" />
+		<result property= "updateBranch" column="update_branch" jdbcType="VARCHAR" />
+		<result property= "transUpflag" column="trans_upflag" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="whereId">
+        id=#{id}
+    </sql>
+
+    <sql id="columns">
+            code_type,
+            code_no,
+            code_name,
+            code_charflag,
+            code_numflag,
+            memo,
+            ver,
+            update_flow,
+            IsSysFlag,
+            update_time,
+            update_branch,
+            trans_upflag
+    </sql>
+
+    <sql id="dynamicWhere">
+        <where>
+       	<if test="codeType != null"> AND code_type like '%${codeType}%' </if>
+       	<if test="codeNo != null"> AND code_no like '%${codeNo}%' </if>
+       	<if test="codeName != null"> AND code_name like '%${codeName}%' </if>
+       	<if test="codeCharflag != null"> AND code_charflag like '%${codeCharflag}%' </if>
+       	<if test="codeNumflag != null"> AND code_numflag like '%${codeNumflag}%' </if>
+       	<if test="memo != null"> AND memo like '%${memo}%' </if>
+       	<if test="ver != null"> AND ver like '%${ver}%' </if>
+       	<if test="updateFlow != null"> AND update_flow like '%${updateFlow}%' </if>
+       	<if test="isSysFlag != null"> AND IsSysFlag like '%${isSysFlag}%' </if>
+       	<if test="updateTimeStart != null"> AND  update_time <![CDATA[ >= ]]> #{updateTimeStart} AND update_time <![CDATA[ < ]]> #{updateTimeEnd}</if>
+       	<if test="updateBranch != null"> AND update_branch like '%${updateBranch}%' </if>
+       	<if test="transUpflag != null"> AND trans_upflag like '%${transUpflag}%' </if>
+        </where>
+    </sql>
+
+    <sql id="oneWhere">
+        <where>
+       	<if test="codeType != null"> AND code_type = #{codeType}</if>
+       	<if test="codeNo != null"> AND code_no = #{codeNo}</if>
+       	<if test="codeName != null"> AND code_name = #{codeName}</if>
+       	<if test="codeCharflag != null"> AND code_charflag = #{codeCharflag}</if>
+       	<if test="codeNumflag != null"> AND code_numflag = #{codeNumflag}</if>
+       	<if test="memo != null"> AND memo = #{memo}</if>
+       	<if test="ver != null"> AND ver = #{ver}</if>
+       	<if test="updateFlow != null"> AND update_flow = #{updateFlow}</if>
+       	<if test="isSysFlag != null"> AND IsSysFlag = #{isSysFlag}</if>
+       	<if test="updateTimeStart != null"> AND update_time <![CDATA[ >= ]]> #{updateTimeStart} AND update_time <![CDATA[ < ]]> #{updateTimeEnd}</if>
+       	<if test="updateBranch != null"> AND update_branch = #{updateBranch}</if>
+       	<if test="transUpflag != null"> AND trans_upflag = #{transUpflag}</if>
+        </where>
+    </sql>
+
+    <insert id="create" parameterType="com.yx.pos.model.SysCode">
+        INSERT INTO t_sys_code
+        (<include refid="columns"/>)
+        VALUES(
+                #{codeType,jdbcType=VARCHAR},
+                #{codeNo,jdbcType=VARCHAR},
+                #{codeName,jdbcType=VARCHAR},
+                #{codeCharflag,jdbcType=VARCHAR},
+                #{codeNumflag,jdbcType=NUMERIC},
+                #{memo,jdbcType=VARCHAR},
+                #{ver,jdbcType=VARCHAR},
+                #{updateFlow,jdbcType=NUMERIC},
+                #{isSysFlag,jdbcType=VARCHAR},
+                #{updateTime,jdbcType=TIMESTAMP},
+                #{updateBranch,jdbcType=VARCHAR},
+                #{transUpflag,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM t_sys_code
+        WHERE
+        <include refid="whereId"/>
+    </delete>
+    <update id="update" parameterType="com.yx.pos.model.SysCode">
+        UPDATE t_sys_code SET
+                code_type=#{codeType,jdbcType=VARCHAR},
+                code_no=#{codeNo,jdbcType=VARCHAR},
+                code_name=#{codeName,jdbcType=VARCHAR},
+                code_charflag=#{codeCharflag,jdbcType=VARCHAR},
+                code_numflag=#{codeNumflag,jdbcType=NUMERIC},
+                memo=#{memo,jdbcType=VARCHAR},
+                ver=#{ver,jdbcType=VARCHAR},
+                update_flow=#{updateFlow,jdbcType=NUMERIC},
+                IsSysFlag=#{isSysFlag,jdbcType=VARCHAR},
+                update_time=#{updateTime,jdbcType=TIMESTAMP},
+                update_branch=#{updateBranch,jdbcType=VARCHAR},
+                trans_upflag=#{transUpflag,jdbcType=VARCHAR}
+        WHERE
+        <include refid="whereId"/>
+    </update>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="SysCode">
+        SELECT <include refid="columns"/>
+        FROM t_sys_code
+        WHERE
+        <include refid="whereId"/>
+    </select>
+
+    <select id="query" resultMap="SysCode">
+        SELECT <include refid="columns"/>
+        FROM t_sys_code
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="search" resultMap="SysCode">
+        SELECT <include refid="columns"/>
+        FROM t_sys_code
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="getOne" resultMap="SysCode">
+        SELECT <include refid="columns"/>
+        FROM t_sys_code
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getList" resultMap="SysCode">
+        SELECT <include refid="columns"/>
+        FROM t_sys_code
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getAll" resultMap="SysCode">
+        SELECT <include refid="columns"/>
+        FROM t_sys_code
+    </select>
+</mapper>

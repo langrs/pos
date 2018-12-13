@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yx.pos.dao.PosSpDetailDao">
+    <resultMap id="PosSpDetail" type="com.yx.pos.model.PosSpDetail">
+		<result property= "sheetNo" column="sheet_no" jdbcType="VARCHAR" />
+		<result property= "sheetSn" column="sheet_sn" jdbcType="NUMERIC" />
+		<result property= "itemRange" column="item_range" jdbcType="VARCHAR" />
+		<result property= "itemNo" column="item_no" jdbcType="VARCHAR" />
+		<result property= "unitType" column="unit_type" jdbcType="NUMERIC" />
+		<result property= "barcode" column="barcode" jdbcType="VARCHAR" />
+		<result property= "nowUnit" column="now_unit" jdbcType="VARCHAR" />
+		<result property= "nowPack" column="now_pack" jdbcType="NUMERIC" />
+		<result property= "startQty" column="start_qty" jdbcType="NUMERIC" />
+		<result property= "orgPrice" column="org_price" jdbcType="NUMERIC" />
+		<result property= "priceType" column="price_type" jdbcType="VARCHAR" />
+		<result property= "specPrice" column="spec_price" jdbcType="NUMERIC" />
+		<result property= "discount" column="discount" jdbcType="NUMERIC" />
+		<result property= "useStatus" column="use_status" jdbcType="VARCHAR" />
+		<result property= "limitType" column="limit_type" jdbcType="VARCHAR" />
+		<result property= "limitQty" column="limit_qty" jdbcType="NUMERIC" />
+		<result property= "realSaleQty" column="real_sale_qty" jdbcType="NUMERIC" />
+		<result property= "mxMemo" column="mx_memo" jdbcType="VARCHAR" />
+		<result property= "mxBytxt1" column="mx_bytxt1" jdbcType="VARCHAR" />
+		<result property= "mxBytxt2" column="mx_bytxt2" jdbcType="VARCHAR" />
+		<result property= "mxBytxt3" column="mx_bytxt3" jdbcType="VARCHAR" />
+		<result property= "mxBynum1" column="mx_bynum1" jdbcType="NUMERIC" />
+		<result property= "mxBynum2" column="mx_bynum2" jdbcType="NUMERIC" />
+		<result property= "mxBynum3" column="mx_bynum3" jdbcType="NUMERIC" />
+		<result property= "itemGrp" column="item_grp" jdbcType="NUMERIC" />
+    </resultMap>
+
+    <sql id="whereId">
+        id=#{id}
+    </sql>
+
+    <sql id="columns">
+            sheet_no,
+            sheet_sn,
+            item_range,
+            item_no,
+            unit_type,
+            barcode,
+            now_unit,
+            now_pack,
+            start_qty,
+            org_price,
+            price_type,
+            spec_price,
+            discount,
+            use_status,
+            limit_type,
+            limit_qty,
+            real_sale_qty,
+            mx_memo,
+            mx_bytxt1,
+            mx_bytxt2,
+            mx_bytxt3,
+            mx_bynum1,
+            mx_bynum2,
+            mx_bynum3,
+            item_grp
+    </sql>
+
+    <sql id="dynamicWhere">
+        <where>
+       	<if test="sheetNo != null"> AND sheet_no like '%${sheetNo}%' </if>
+       	<if test="sheetSn != null"> AND sheet_sn like '%${sheetSn}%' </if>
+       	<if test="itemRange != null"> AND item_range like '%${itemRange}%' </if>
+       	<if test="itemNo != null"> AND item_no like '%${itemNo}%' </if>
+       	<if test="unitType != null"> AND unit_type like '%${unitType}%' </if>
+       	<if test="barcode != null"> AND barcode like '%${barcode}%' </if>
+       	<if test="nowUnit != null"> AND now_unit like '%${nowUnit}%' </if>
+       	<if test="nowPack != null"> AND now_pack like '%${nowPack}%' </if>
+       	<if test="startQty != null"> AND start_qty like '%${startQty}%' </if>
+       	<if test="orgPrice != null"> AND org_price like '%${orgPrice}%' </if>
+       	<if test="priceType != null"> AND price_type like '%${priceType}%' </if>
+       	<if test="specPrice != null"> AND spec_price like '%${specPrice}%' </if>
+       	<if test="discount != null"> AND discount like '%${discount}%' </if>
+       	<if test="useStatus != null"> AND use_status like '%${useStatus}%' </if>
+       	<if test="limitType != null"> AND limit_type like '%${limitType}%' </if>
+       	<if test="limitQty != null"> AND limit_qty like '%${limitQty}%' </if>
+       	<if test="realSaleQty != null"> AND real_sale_qty like '%${realSaleQty}%' </if>
+       	<if test="mxMemo != null"> AND mx_memo like '%${mxMemo}%' </if>
+       	<if test="mxBytxt1 != null"> AND mx_bytxt1 like '%${mxBytxt1}%' </if>
+       	<if test="mxBytxt2 != null"> AND mx_bytxt2 like '%${mxBytxt2}%' </if>
+       	<if test="mxBytxt3 != null"> AND mx_bytxt3 like '%${mxBytxt3}%' </if>
+       	<if test="mxBynum1 != null"> AND mx_bynum1 like '%${mxBynum1}%' </if>
+       	<if test="mxBynum2 != null"> AND mx_bynum2 like '%${mxBynum2}%' </if>
+       	<if test="mxBynum3 != null"> AND mx_bynum3 like '%${mxBynum3}%' </if>
+       	<if test="itemGrp != null"> AND item_grp like '%${itemGrp}%' </if>
+        </where>
+    </sql>
+
+    <sql id="oneWhere">
+        <where>
+       	<if test="sheetNo != null"> AND sheet_no = #{sheetNo}</if>
+       	<if test="sheetSn != null"> AND sheet_sn = #{sheetSn}</if>
+       	<if test="itemRange != null"> AND item_range = #{itemRange}</if>
+       	<if test="itemNo != null"> AND item_no = #{itemNo}</if>
+       	<if test="unitType != null"> AND unit_type = #{unitType}</if>
+       	<if test="barcode != null"> AND barcode = #{barcode}</if>
+       	<if test="nowUnit != null"> AND now_unit = #{nowUnit}</if>
+       	<if test="nowPack != null"> AND now_pack = #{nowPack}</if>
+       	<if test="startQty != null"> AND start_qty = #{startQty}</if>
+       	<if test="orgPrice != null"> AND org_price = #{orgPrice}</if>
+       	<if test="priceType != null"> AND price_type = #{priceType}</if>
+       	<if test="specPrice != null"> AND spec_price = #{specPrice}</if>
+       	<if test="discount != null"> AND discount = #{discount}</if>
+       	<if test="useStatus != null"> AND use_status = #{useStatus}</if>
+       	<if test="limitType != null"> AND limit_type = #{limitType}</if>
+       	<if test="limitQty != null"> AND limit_qty = #{limitQty}</if>
+       	<if test="realSaleQty != null"> AND real_sale_qty = #{realSaleQty}</if>
+       	<if test="mxMemo != null"> AND mx_memo = #{mxMemo}</if>
+       	<if test="mxBytxt1 != null"> AND mx_bytxt1 = #{mxBytxt1}</if>
+       	<if test="mxBytxt2 != null"> AND mx_bytxt2 = #{mxBytxt2}</if>
+       	<if test="mxBytxt3 != null"> AND mx_bytxt3 = #{mxBytxt3}</if>
+       	<if test="mxBynum1 != null"> AND mx_bynum1 = #{mxBynum1}</if>
+       	<if test="mxBynum2 != null"> AND mx_bynum2 = #{mxBynum2}</if>
+       	<if test="mxBynum3 != null"> AND mx_bynum3 = #{mxBynum3}</if>
+       	<if test="itemGrp != null"> AND item_grp = #{itemGrp}</if>
+        </where>
+    </sql>
+
+    <insert id="create" parameterType="com.yx.pos.model.PosSpDetail">
+        INSERT INTO t_pos_sp_detail
+        (<include refid="columns"/>)
+        VALUES(
+                #{sheetNo,jdbcType=VARCHAR},
+                #{sheetSn,jdbcType=NUMERIC},
+                #{itemRange,jdbcType=VARCHAR},
+                #{itemNo,jdbcType=VARCHAR},
+                #{unitType,jdbcType=NUMERIC},
+                #{barcode,jdbcType=VARCHAR},
+                #{nowUnit,jdbcType=VARCHAR},
+                #{nowPack,jdbcType=NUMERIC},
+                #{startQty,jdbcType=NUMERIC},
+                #{orgPrice,jdbcType=NUMERIC},
+                #{priceType,jdbcType=VARCHAR},
+                #{specPrice,jdbcType=NUMERIC},
+                #{discount,jdbcType=NUMERIC},
+                #{useStatus,jdbcType=VARCHAR},
+                #{limitType,jdbcType=VARCHAR},
+                #{limitQty,jdbcType=NUMERIC},
+                #{realSaleQty,jdbcType=NUMERIC},
+                #{mxMemo,jdbcType=VARCHAR},
+                #{mxBytxt1,jdbcType=VARCHAR},
+                #{mxBytxt2,jdbcType=VARCHAR},
+                #{mxBytxt3,jdbcType=VARCHAR},
+                #{mxBynum1,jdbcType=NUMERIC},
+                #{mxBynum2,jdbcType=NUMERIC},
+                #{mxBynum3,jdbcType=NUMERIC},
+                #{itemGrp,jdbcType=NUMERIC}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM t_pos_sp_detail
+        WHERE
+        <include refid="whereId"/>
+    </delete>
+    <update id="update" parameterType="com.yx.pos.model.PosSpDetail">
+        UPDATE t_pos_sp_detail SET
+                sheet_no=#{sheetNo,jdbcType=VARCHAR},
+                sheet_sn=#{sheetSn,jdbcType=NUMERIC},
+                item_range=#{itemRange,jdbcType=VARCHAR},
+                item_no=#{itemNo,jdbcType=VARCHAR},
+                unit_type=#{unitType,jdbcType=NUMERIC},
+                barcode=#{barcode,jdbcType=VARCHAR},
+                now_unit=#{nowUnit,jdbcType=VARCHAR},
+                now_pack=#{nowPack,jdbcType=NUMERIC},
+                start_qty=#{startQty,jdbcType=NUMERIC},
+                org_price=#{orgPrice,jdbcType=NUMERIC},
+                price_type=#{priceType,jdbcType=VARCHAR},
+                spec_price=#{specPrice,jdbcType=NUMERIC},
+                discount=#{discount,jdbcType=NUMERIC},
+                use_status=#{useStatus,jdbcType=VARCHAR},
+                limit_type=#{limitType,jdbcType=VARCHAR},
+                limit_qty=#{limitQty,jdbcType=NUMERIC},
+                real_sale_qty=#{realSaleQty,jdbcType=NUMERIC},
+                mx_memo=#{mxMemo,jdbcType=VARCHAR},
+                mx_bytxt1=#{mxBytxt1,jdbcType=VARCHAR},
+                mx_bytxt2=#{mxBytxt2,jdbcType=VARCHAR},
+                mx_bytxt3=#{mxBytxt3,jdbcType=VARCHAR},
+                mx_bynum1=#{mxBynum1,jdbcType=NUMERIC},
+                mx_bynum2=#{mxBynum2,jdbcType=NUMERIC},
+                mx_bynum3=#{mxBynum3,jdbcType=NUMERIC},
+                item_grp=#{itemGrp,jdbcType=NUMERIC}
+        WHERE
+        <include refid="whereId"/>
+    </update>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="PosSpDetail">
+        SELECT <include refid="columns"/>
+        FROM t_pos_sp_detail
+        WHERE
+        <include refid="whereId"/>
+    </select>
+
+    <select id="query" resultMap="PosSpDetail">
+        SELECT <include refid="columns"/>
+        FROM t_pos_sp_detail
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="search" resultMap="PosSpDetail">
+        SELECT <include refid="columns"/>
+        FROM t_pos_sp_detail
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="getOne" resultMap="PosSpDetail">
+        SELECT <include refid="columns"/>
+        FROM t_pos_sp_detail
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getList" resultMap="PosSpDetail">
+        SELECT <include refid="columns"/>
+        FROM t_pos_sp_detail
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getAll" resultMap="PosSpDetail">
+        SELECT <include refid="columns"/>
+        FROM t_pos_sp_detail
+    </select>
+</mapper>

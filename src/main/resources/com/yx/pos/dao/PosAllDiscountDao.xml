@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yx.pos.dao.PosAllDiscountDao">
+    <resultMap id="PosAllDiscount" type="com.yx.pos.model.PosAllDiscount">
+		<result property= "sheetNo" column="sheet_no" jdbcType="VARCHAR" />
+		<result property= "branchNo" column="branch_no" jdbcType="VARCHAR" />
+		<result property= "startDate" column="start_date" jdbcType="TIMESTAMP" />
+		<result property= "endDate" column="end_date" jdbcType="TIMESTAMP" />
+		<result property= "startTime" column="start_time" jdbcType="VARCHAR" />
+		<result property= "endTime" column="end_time" jdbcType="VARCHAR" />
+		<result property= "discountNo" column="discount_no" jdbcType="VARCHAR" />
+		<result property= "userId" column="user_id" jdbcType="VARCHAR" />
+		<result property= "operDate" column="oper_date" jdbcType="TIMESTAMP" />
+		<result property= "useStatus" column="use_status" jdbcType="VARCHAR" />
+		<result property= "updateFlow" column="update_flow" jdbcType="NUMERIC" />
+		<result property= "isStop" column="is_stop" jdbcType="VARCHAR" />
+		<result property= "stopDate" column="stop_date" jdbcType="TIMESTAMP" />
+		<result property= "stopUser" column="stop_user" jdbcType="VARCHAR" />
+		<result property= "updateTime" column="update_time" jdbcType="TIMESTAMP" />
+		<result property= "updateBranch" column="update_branch" jdbcType="VARCHAR" />
+		<result property= "viptypeNo" column="viptype_no" jdbcType="VARCHAR" />
+		<result property= "transUpflag" column="trans_upflag" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="whereId">
+        id=#{id}
+    </sql>
+
+    <sql id="columns">
+            sheet_no,
+            branch_no,
+            start_date,
+            end_date,
+            start_time,
+            end_time,
+            discount_no,
+            user_id,
+            oper_date,
+            use_status,
+            update_flow,
+            is_stop,
+            stop_date,
+            stop_user,
+            update_time,
+            update_branch,
+            viptype_no,
+            trans_upflag
+    </sql>
+
+    <sql id="dynamicWhere">
+        <where>
+       	<if test="sheetNo != null"> AND sheet_no like '%${sheetNo}%' </if>
+       	<if test="branchNo != null"> AND branch_no like '%${branchNo}%' </if>
+       	<if test="startDateStart != null"> AND  start_date <![CDATA[ >= ]]> #{startDateStart} AND start_date <![CDATA[ < ]]> #{startDateEnd}</if>
+       	<if test="endDateStart != null"> AND  end_date <![CDATA[ >= ]]> #{endDateStart} AND end_date <![CDATA[ < ]]> #{endDateEnd}</if>
+       	<if test="startTime != null"> AND start_time like '%${startTime}%' </if>
+       	<if test="endTime != null"> AND end_time like '%${endTime}%' </if>
+       	<if test="discountNo != null"> AND discount_no like '%${discountNo}%' </if>
+       	<if test="userId != null"> AND user_id like '%${userId}%' </if>
+       	<if test="operDateStart != null"> AND  oper_date <![CDATA[ >= ]]> #{operDateStart} AND oper_date <![CDATA[ < ]]> #{operDateEnd}</if>
+       	<if test="useStatus != null"> AND use_status like '%${useStatus}%' </if>
+       	<if test="updateFlow != null"> AND update_flow like '%${updateFlow}%' </if>
+       	<if test="isStop != null"> AND is_stop like '%${isStop}%' </if>
+       	<if test="stopDateStart != null"> AND  stop_date <![CDATA[ >= ]]> #{stopDateStart} AND stop_date <![CDATA[ < ]]> #{stopDateEnd}</if>
+       	<if test="stopUser != null"> AND stop_user like '%${stopUser}%' </if>
+       	<if test="updateTimeStart != null"> AND  update_time <![CDATA[ >= ]]> #{updateTimeStart} AND update_time <![CDATA[ < ]]> #{updateTimeEnd}</if>
+       	<if test="updateBranch != null"> AND update_branch like '%${updateBranch}%' </if>
+       	<if test="viptypeNo != null"> AND viptype_no like '%${viptypeNo}%' </if>
+       	<if test="transUpflag != null"> AND trans_upflag like '%${transUpflag}%' </if>
+        </where>
+    </sql>
+
+    <sql id="oneWhere">
+        <where>
+       	<if test="sheetNo != null"> AND sheet_no = #{sheetNo}</if>
+       	<if test="branchNo != null"> AND branch_no = #{branchNo}</if>
+       	<if test="startDateStart != null"> AND start_date <![CDATA[ >= ]]> #{startDateStart} AND start_date <![CDATA[ < ]]> #{startDateEnd}</if>
+       	<if test="endDateStart != null"> AND end_date <![CDATA[ >= ]]> #{endDateStart} AND end_date <![CDATA[ < ]]> #{endDateEnd}</if>
+       	<if test="startTime != null"> AND start_time = #{startTime}</if>
+       	<if test="endTime != null"> AND end_time = #{endTime}</if>
+       	<if test="discountNo != null"> AND discount_no = #{discountNo}</if>
+       	<if test="userId != null"> AND user_id = #{userId}</if>
+       	<if test="operDateStart != null"> AND oper_date <![CDATA[ >= ]]> #{operDateStart} AND oper_date <![CDATA[ < ]]> #{operDateEnd}</if>
+       	<if test="useStatus != null"> AND use_status = #{useStatus}</if>
+       	<if test="updateFlow != null"> AND update_flow = #{updateFlow}</if>
+       	<if test="isStop != null"> AND is_stop = #{isStop}</if>
+       	<if test="stopDateStart != null"> AND stop_date <![CDATA[ >= ]]> #{stopDateStart} AND stop_date <![CDATA[ < ]]> #{stopDateEnd}</if>
+       	<if test="stopUser != null"> AND stop_user = #{stopUser}</if>
+       	<if test="updateTimeStart != null"> AND update_time <![CDATA[ >= ]]> #{updateTimeStart} AND update_time <![CDATA[ < ]]> #{updateTimeEnd}</if>
+       	<if test="updateBranch != null"> AND update_branch = #{updateBranch}</if>
+       	<if test="viptypeNo != null"> AND viptype_no = #{viptypeNo}</if>
+       	<if test="transUpflag != null"> AND trans_upflag = #{transUpflag}</if>
+        </where>
+    </sql>
+
+    <insert id="create" parameterType="com.yx.pos.model.PosAllDiscount">
+        INSERT INTO t_pos_all_discount
+        (<include refid="columns"/>)
+        VALUES(
+                #{sheetNo,jdbcType=VARCHAR},
+                #{branchNo,jdbcType=VARCHAR},
+                #{startDate,jdbcType=TIMESTAMP},
+                #{endDate,jdbcType=TIMESTAMP},
+                #{startTime,jdbcType=VARCHAR},
+                #{endTime,jdbcType=VARCHAR},
+                #{discountNo,jdbcType=VARCHAR},
+                #{userId,jdbcType=VARCHAR},
+                #{operDate,jdbcType=TIMESTAMP},
+                #{useStatus,jdbcType=VARCHAR},
+                #{updateFlow,jdbcType=NUMERIC},
+                #{isStop,jdbcType=VARCHAR},
+                #{stopDate,jdbcType=TIMESTAMP},
+                #{stopUser,jdbcType=VARCHAR},
+                #{updateTime,jdbcType=TIMESTAMP},
+                #{updateBranch,jdbcType=VARCHAR},
+                #{viptypeNo,jdbcType=VARCHAR},
+                #{transUpflag,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM t_pos_all_discount
+        WHERE
+        <include refid="whereId"/>
+    </delete>
+    <update id="update" parameterType="com.yx.pos.model.PosAllDiscount">
+        UPDATE t_pos_all_discount SET
+                sheet_no=#{sheetNo,jdbcType=VARCHAR},
+                branch_no=#{branchNo,jdbcType=VARCHAR},
+                start_date=#{startDate,jdbcType=TIMESTAMP},
+                end_date=#{endDate,jdbcType=TIMESTAMP},
+                start_time=#{startTime,jdbcType=VARCHAR},
+                end_time=#{endTime,jdbcType=VARCHAR},
+                discount_no=#{discountNo,jdbcType=VARCHAR},
+                user_id=#{userId,jdbcType=VARCHAR},
+                oper_date=#{operDate,jdbcType=TIMESTAMP},
+                use_status=#{useStatus,jdbcType=VARCHAR},
+                update_flow=#{updateFlow,jdbcType=NUMERIC},
+                is_stop=#{isStop,jdbcType=VARCHAR},
+                stop_date=#{stopDate,jdbcType=TIMESTAMP},
+                stop_user=#{stopUser,jdbcType=VARCHAR},
+                update_time=#{updateTime,jdbcType=TIMESTAMP},
+                update_branch=#{updateBranch,jdbcType=VARCHAR},
+                viptype_no=#{viptypeNo,jdbcType=VARCHAR},
+                trans_upflag=#{transUpflag,jdbcType=VARCHAR}
+        WHERE
+        <include refid="whereId"/>
+    </update>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="PosAllDiscount">
+        SELECT <include refid="columns"/>
+        FROM t_pos_all_discount
+        WHERE
+        <include refid="whereId"/>
+    </select>
+
+    <select id="query" resultMap="PosAllDiscount">
+        SELECT <include refid="columns"/>
+        FROM t_pos_all_discount
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="search" resultMap="PosAllDiscount">
+        SELECT <include refid="columns"/>
+        FROM t_pos_all_discount
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="getOne" resultMap="PosAllDiscount">
+        SELECT <include refid="columns"/>
+        FROM t_pos_all_discount
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getList" resultMap="PosAllDiscount">
+        SELECT <include refid="columns"/>
+        FROM t_pos_all_discount
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getAll" resultMap="PosAllDiscount">
+        SELECT <include refid="columns"/>
+        FROM t_pos_all_discount
+    </select>
+</mapper>

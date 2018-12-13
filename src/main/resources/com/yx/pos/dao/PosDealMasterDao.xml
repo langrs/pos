@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yx.pos.dao.PosDealMasterDao">
+    <resultMap id="PosDealMaster" type="com.yx.pos.model.PosDealMaster">
+		<result property= "dealNo" column="deal_no" jdbcType="VARCHAR" />
+		<result property= "branchNo" column="branch_no" jdbcType="VARCHAR" />
+		<result property= "dealClass" column="deal_class" jdbcType="VARCHAR" />
+		<result property= "userId" column="user_id" jdbcType="VARCHAR" />
+		<result property= "jh" column="jh" jdbcType="VARCHAR" />
+		<result property= "startDate" column="start_date" jdbcType="TIMESTAMP" />
+		<result property= "startSheetNo" column="start_sheet_no" jdbcType="VARCHAR" />
+		<result property= "startAmt" column="start_amt" jdbcType="NUMERIC" />
+		<result property= "endDate" column="end_date" jdbcType="TIMESTAMP" />
+		<result property= "endSheetNo" column="end_sheet_no" jdbcType="VARCHAR" />
+		<result property= "sheetCnt" column="sheet_cnt" jdbcType="NUMERIC" />
+		<result property= "sheetSaleAmt" column="sheet_sale_amt" jdbcType="NUMERIC" />
+		<result property= "sheetReturnAmt" column="sheet_return_amt" jdbcType="NUMERIC" />
+		<result property= "appUser" column="app_user" jdbcType="VARCHAR" />
+		<result property= "dealStatus" column="deal_status" jdbcType="VARCHAR" />
+		<result property= "dealMemo" column="deal_memo" jdbcType="VARCHAR" />
+		<result property= "appSign" column="app_sign" jdbcType="VARCHAR" />
+		<result property= "cmFlag" column="cm_flag" jdbcType="VARCHAR" />
+		<result property= "updateFlow" column="update_flow" jdbcType="NUMERIC" />
+		<result property= "updateTime" column="update_time" jdbcType="TIMESTAMP" />
+		<result property= "updateBranch" column="update_branch" jdbcType="VARCHAR" />
+		<result property= "transUpflag" column="trans_upflag" jdbcType="VARCHAR" />
+		<result property= "cashMemo" column="cash_memo" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="whereId">
+        id=#{id}
+    </sql>
+
+    <sql id="columns">
+            deal_no,
+            branch_no,
+            deal_class,
+            user_id,
+            jh,
+            start_date,
+            start_sheet_no,
+            start_amt,
+            end_date,
+            end_sheet_no,
+            sheet_cnt,
+            sheet_sale_amt,
+            sheet_return_amt,
+            app_user,
+            deal_status,
+            deal_memo,
+            app_sign,
+            cm_flag,
+            update_flow,
+            update_time,
+            update_branch,
+            trans_upflag,
+            cash_memo
+    </sql>
+
+    <sql id="dynamicWhere">
+        <where>
+       	<if test="dealNo != null"> AND deal_no like '%${dealNo}%' </if>
+       	<if test="branchNo != null"> AND branch_no like '%${branchNo}%' </if>
+       	<if test="dealClass != null"> AND deal_class like '%${dealClass}%' </if>
+       	<if test="userId != null"> AND user_id like '%${userId}%' </if>
+       	<if test="jh != null"> AND jh like '%${jh}%' </if>
+       	<if test="startDateStart != null"> AND  start_date <![CDATA[ >= ]]> #{startDateStart} AND start_date <![CDATA[ < ]]> #{startDateEnd}</if>
+       	<if test="startSheetNo != null"> AND start_sheet_no like '%${startSheetNo}%' </if>
+       	<if test="startAmt != null"> AND start_amt like '%${startAmt}%' </if>
+       	<if test="endDateStart != null"> AND  end_date <![CDATA[ >= ]]> #{endDateStart} AND end_date <![CDATA[ < ]]> #{endDateEnd}</if>
+       	<if test="endSheetNo != null"> AND end_sheet_no like '%${endSheetNo}%' </if>
+       	<if test="sheetCnt != null"> AND sheet_cnt like '%${sheetCnt}%' </if>
+       	<if test="sheetSaleAmt != null"> AND sheet_sale_amt like '%${sheetSaleAmt}%' </if>
+       	<if test="sheetReturnAmt != null"> AND sheet_return_amt like '%${sheetReturnAmt}%' </if>
+       	<if test="appUser != null"> AND app_user like '%${appUser}%' </if>
+       	<if test="dealStatus != null"> AND deal_status like '%${dealStatus}%' </if>
+       	<if test="dealMemo != null"> AND deal_memo like '%${dealMemo}%' </if>
+       	<if test="appSign != null"> AND app_sign like '%${appSign}%' </if>
+       	<if test="cmFlag != null"> AND cm_flag like '%${cmFlag}%' </if>
+       	<if test="updateFlow != null"> AND update_flow like '%${updateFlow}%' </if>
+       	<if test="updateTimeStart != null"> AND  update_time <![CDATA[ >= ]]> #{updateTimeStart} AND update_time <![CDATA[ < ]]> #{updateTimeEnd}</if>
+       	<if test="updateBranch != null"> AND update_branch like '%${updateBranch}%' </if>
+       	<if test="transUpflag != null"> AND trans_upflag like '%${transUpflag}%' </if>
+       	<if test="cashMemo != null"> AND cash_memo like '%${cashMemo}%' </if>
+        </where>
+    </sql>
+
+    <sql id="oneWhere">
+        <where>
+       	<if test="dealNo != null"> AND deal_no = #{dealNo}</if>
+       	<if test="branchNo != null"> AND branch_no = #{branchNo}</if>
+       	<if test="dealClass != null"> AND deal_class = #{dealClass}</if>
+       	<if test="userId != null"> AND user_id = #{userId}</if>
+       	<if test="jh != null"> AND jh = #{jh}</if>
+       	<if test="startDateStart != null"> AND start_date <![CDATA[ >= ]]> #{startDateStart} AND start_date <![CDATA[ < ]]> #{startDateEnd}</if>
+       	<if test="startSheetNo != null"> AND start_sheet_no = #{startSheetNo}</if>
+       	<if test="startAmt != null"> AND start_amt = #{startAmt}</if>
+       	<if test="endDateStart != null"> AND end_date <![CDATA[ >= ]]> #{endDateStart} AND end_date <![CDATA[ < ]]> #{endDateEnd}</if>
+       	<if test="endSheetNo != null"> AND end_sheet_no = #{endSheetNo}</if>
+       	<if test="sheetCnt != null"> AND sheet_cnt = #{sheetCnt}</if>
+       	<if test="sheetSaleAmt != null"> AND sheet_sale_amt = #{sheetSaleAmt}</if>
+       	<if test="sheetReturnAmt != null"> AND sheet_return_amt = #{sheetReturnAmt}</if>
+       	<if test="appUser != null"> AND app_user = #{appUser}</if>
+       	<if test="dealStatus != null"> AND deal_status = #{dealStatus}</if>
+       	<if test="dealMemo != null"> AND deal_memo = #{dealMemo}</if>
+       	<if test="appSign != null"> AND app_sign = #{appSign}</if>
+       	<if test="cmFlag != null"> AND cm_flag = #{cmFlag}</if>
+       	<if test="updateFlow != null"> AND update_flow = #{updateFlow}</if>
+       	<if test="updateTimeStart != null"> AND update_time <![CDATA[ >= ]]> #{updateTimeStart} AND update_time <![CDATA[ < ]]> #{updateTimeEnd}</if>
+       	<if test="updateBranch != null"> AND update_branch = #{updateBranch}</if>
+       	<if test="transUpflag != null"> AND trans_upflag = #{transUpflag}</if>
+       	<if test="cashMemo != null"> AND cash_memo = #{cashMemo}</if>
+        </where>
+    </sql>
+
+    <insert id="create" parameterType="com.yx.pos.model.PosDealMaster">
+        INSERT INTO t_pos_deal_master
+        (<include refid="columns"/>)
+        VALUES(
+                #{dealNo,jdbcType=VARCHAR},
+                #{branchNo,jdbcType=VARCHAR},
+                #{dealClass,jdbcType=VARCHAR},
+                #{userId,jdbcType=VARCHAR},
+                #{jh,jdbcType=VARCHAR},
+                #{startDate,jdbcType=TIMESTAMP},
+                #{startSheetNo,jdbcType=VARCHAR},
+                #{startAmt,jdbcType=NUMERIC},
+                #{endDate,jdbcType=TIMESTAMP},
+                #{endSheetNo,jdbcType=VARCHAR},
+                #{sheetCnt,jdbcType=NUMERIC},
+                #{sheetSaleAmt,jdbcType=NUMERIC},
+                #{sheetReturnAmt,jdbcType=NUMERIC},
+                #{appUser,jdbcType=VARCHAR},
+                #{dealStatus,jdbcType=VARCHAR},
+                #{dealMemo,jdbcType=VARCHAR},
+                #{appSign,jdbcType=VARCHAR},
+                #{cmFlag,jdbcType=VARCHAR},
+                #{updateFlow,jdbcType=NUMERIC},
+                #{updateTime,jdbcType=TIMESTAMP},
+                #{updateBranch,jdbcType=VARCHAR},
+                #{transUpflag,jdbcType=VARCHAR},
+                #{cashMemo,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM t_pos_deal_master
+        WHERE
+        <include refid="whereId"/>
+    </delete>
+    <update id="update" parameterType="com.yx.pos.model.PosDealMaster">
+        UPDATE t_pos_deal_master SET
+                deal_no=#{dealNo,jdbcType=VARCHAR},
+                branch_no=#{branchNo,jdbcType=VARCHAR},
+                deal_class=#{dealClass,jdbcType=VARCHAR},
+                user_id=#{userId,jdbcType=VARCHAR},
+                jh=#{jh,jdbcType=VARCHAR},
+                start_date=#{startDate,jdbcType=TIMESTAMP},
+                start_sheet_no=#{startSheetNo,jdbcType=VARCHAR},
+                start_amt=#{startAmt,jdbcType=NUMERIC},
+                end_date=#{endDate,jdbcType=TIMESTAMP},
+                end_sheet_no=#{endSheetNo,jdbcType=VARCHAR},
+                sheet_cnt=#{sheetCnt,jdbcType=NUMERIC},
+                sheet_sale_amt=#{sheetSaleAmt,jdbcType=NUMERIC},
+                sheet_return_amt=#{sheetReturnAmt,jdbcType=NUMERIC},
+                app_user=#{appUser,jdbcType=VARCHAR},
+                deal_status=#{dealStatus,jdbcType=VARCHAR},
+                deal_memo=#{dealMemo,jdbcType=VARCHAR},
+                app_sign=#{appSign,jdbcType=VARCHAR},
+                cm_flag=#{cmFlag,jdbcType=VARCHAR},
+                update_flow=#{updateFlow,jdbcType=NUMERIC},
+                update_time=#{updateTime,jdbcType=TIMESTAMP},
+                update_branch=#{updateBranch,jdbcType=VARCHAR},
+                trans_upflag=#{transUpflag,jdbcType=VARCHAR},
+                cash_memo=#{cashMemo,jdbcType=VARCHAR}
+        WHERE
+        <include refid="whereId"/>
+    </update>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="PosDealMaster">
+        SELECT <include refid="columns"/>
+        FROM t_pos_deal_master
+        WHERE
+        <include refid="whereId"/>
+    </select>
+
+    <select id="query" resultMap="PosDealMaster">
+        SELECT <include refid="columns"/>
+        FROM t_pos_deal_master
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="search" resultMap="PosDealMaster">
+        SELECT <include refid="columns"/>
+        FROM t_pos_deal_master
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="getOne" resultMap="PosDealMaster">
+        SELECT <include refid="columns"/>
+        FROM t_pos_deal_master
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getList" resultMap="PosDealMaster">
+        SELECT <include refid="columns"/>
+        FROM t_pos_deal_master
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getAll" resultMap="PosDealMaster">
+        SELECT <include refid="columns"/>
+        FROM t_pos_deal_master
+    </select>
+</mapper>

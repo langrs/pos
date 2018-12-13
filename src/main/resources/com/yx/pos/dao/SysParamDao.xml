@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yx.pos.dao.SysParamDao">
+    <resultMap id="SysParam" type="com.yx.pos.model.SysParam">
+		<result property= "paramId" column="param_id" jdbcType="VARCHAR" />
+		<result property= "userId" column="user_id" jdbcType="VARCHAR" />
+		<result property= "jh" column="jh" jdbcType="VARCHAR" />
+		<result property= "paramName" column="param_name" jdbcType="VARCHAR" />
+		<result property= "paramData" column="param_data" jdbcType="VARCHAR" />
+		<result property= "sysFlag" column="sys_flag" jdbcType="VARCHAR" />
+		<result property= "paramMemo" column="param_memo" jdbcType="VARCHAR" />
+		<result property= "updateFlow" column="update_flow" jdbcType="NUMERIC" />
+		<result property= "updateTime" column="update_time" jdbcType="TIMESTAMP" />
+		<result property= "updateBranch" column="update_branch" jdbcType="VARCHAR" />
+		<result property= "transUpflag" column="trans_upflag" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="whereId">
+        id=#{id}
+    </sql>
+
+    <sql id="columns">
+            param_id,
+            user_id,
+            jh,
+            param_name,
+            param_data,
+            sys_flag,
+            param_memo,
+            update_flow,
+            update_time,
+            update_branch,
+            trans_upflag
+    </sql>
+
+    <sql id="dynamicWhere">
+        <where>
+       	<if test="paramId != null"> AND param_id like '%${paramId}%' </if>
+       	<if test="userId != null"> AND user_id like '%${userId}%' </if>
+       	<if test="jh != null"> AND jh like '%${jh}%' </if>
+       	<if test="paramName != null"> AND param_name like '%${paramName}%' </if>
+       	<if test="paramData != null"> AND param_data like '%${paramData}%' </if>
+       	<if test="sysFlag != null"> AND sys_flag like '%${sysFlag}%' </if>
+       	<if test="paramMemo != null"> AND param_memo like '%${paramMemo}%' </if>
+       	<if test="updateFlow != null"> AND update_flow like '%${updateFlow}%' </if>
+       	<if test="updateTimeStart != null"> AND  update_time <![CDATA[ >= ]]> #{updateTimeStart} AND update_time <![CDATA[ < ]]> #{updateTimeEnd}</if>
+       	<if test="updateBranch != null"> AND update_branch like '%${updateBranch}%' </if>
+       	<if test="transUpflag != null"> AND trans_upflag like '%${transUpflag}%' </if>
+        </where>
+    </sql>
+
+    <sql id="oneWhere">
+        <where>
+       	<if test="paramId != null"> AND param_id = #{paramId}</if>
+       	<if test="userId != null"> AND user_id = #{userId}</if>
+       	<if test="jh != null"> AND jh = #{jh}</if>
+       	<if test="paramName != null"> AND param_name = #{paramName}</if>
+       	<if test="paramData != null"> AND param_data = #{paramData}</if>
+       	<if test="sysFlag != null"> AND sys_flag = #{sysFlag}</if>
+       	<if test="paramMemo != null"> AND param_memo = #{paramMemo}</if>
+       	<if test="updateFlow != null"> AND update_flow = #{updateFlow}</if>
+       	<if test="updateTimeStart != null"> AND update_time <![CDATA[ >= ]]> #{updateTimeStart} AND update_time <![CDATA[ < ]]> #{updateTimeEnd}</if>
+       	<if test="updateBranch != null"> AND update_branch = #{updateBranch}</if>
+       	<if test="transUpflag != null"> AND trans_upflag = #{transUpflag}</if>
+        </where>
+    </sql>
+
+    <insert id="create" parameterType="com.yx.pos.model.SysParam">
+        INSERT INTO t_sys_param
+        (<include refid="columns"/>)
+        VALUES(
+                #{paramId,jdbcType=VARCHAR},
+                #{userId,jdbcType=VARCHAR},
+                #{jh,jdbcType=VARCHAR},
+                #{paramName,jdbcType=VARCHAR},
+                #{paramData,jdbcType=VARCHAR},
+                #{sysFlag,jdbcType=VARCHAR},
+                #{paramMemo,jdbcType=VARCHAR},
+                #{updateFlow,jdbcType=NUMERIC},
+                #{updateTime,jdbcType=TIMESTAMP},
+                #{updateBranch,jdbcType=VARCHAR},
+                #{transUpflag,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM t_sys_param
+        WHERE
+        <include refid="whereId"/>
+    </delete>
+    <update id="update" parameterType="com.yx.pos.model.SysParam">
+        UPDATE t_sys_param SET
+                param_id=#{paramId,jdbcType=VARCHAR},
+                user_id=#{userId,jdbcType=VARCHAR},
+                jh=#{jh,jdbcType=VARCHAR},
+                param_name=#{paramName,jdbcType=VARCHAR},
+                param_data=#{paramData,jdbcType=VARCHAR},
+                sys_flag=#{sysFlag,jdbcType=VARCHAR},
+                param_memo=#{paramMemo,jdbcType=VARCHAR},
+                update_flow=#{updateFlow,jdbcType=NUMERIC},
+                update_time=#{updateTime,jdbcType=TIMESTAMP},
+                update_branch=#{updateBranch,jdbcType=VARCHAR},
+                trans_upflag=#{transUpflag,jdbcType=VARCHAR}
+        WHERE
+        <include refid="whereId"/>
+    </update>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="SysParam">
+        SELECT <include refid="columns"/>
+        FROM t_sys_param
+        WHERE
+        <include refid="whereId"/>
+    </select>
+
+    <select id="query" resultMap="SysParam">
+        SELECT <include refid="columns"/>
+        FROM t_sys_param
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="search" resultMap="SysParam">
+        SELECT <include refid="columns"/>
+        FROM t_sys_param
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="getOne" resultMap="SysParam">
+        SELECT <include refid="columns"/>
+        FROM t_sys_param
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getList" resultMap="SysParam">
+        SELECT <include refid="columns"/>
+        FROM t_sys_param
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getAll" resultMap="SysParam">
+        SELECT <include refid="columns"/>
+        FROM t_sys_param
+    </select>
+</mapper>

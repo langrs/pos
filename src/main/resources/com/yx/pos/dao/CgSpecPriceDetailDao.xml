@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yx.pos.dao.CgSpecPriceDetailDao">
+    <resultMap id="CgSpecPriceDetail" type="com.yx.pos.model.CgSpecPriceDetail">
+		<result property= "sheetNo" column="sheet_no" jdbcType="VARCHAR" />
+		<result property= "sheetSn" column="sheet_sn" jdbcType="NUMERIC" />
+		<result property= "itemNo" column="item_no" jdbcType="VARCHAR" />
+		<result property= "orgPriceValue" column="org_price_value" jdbcType="NUMERIC" />
+		<result property= "newPriceValue" column="new_price_value" jdbcType="NUMERIC" />
+		<result property= "mxMemo" column="mx_memo" jdbcType="VARCHAR" />
+		<result property= "mxBytxt1" column="mx_bytxt1" jdbcType="VARCHAR" />
+		<result property= "mxBytxt2" column="mx_bytxt2" jdbcType="VARCHAR" />
+		<result property= "mxBytxt3" column="mx_bytxt3" jdbcType="VARCHAR" />
+		<result property= "mxBynum1" column="mx_bynum1" jdbcType="NUMERIC" />
+		<result property= "mxBynum2" column="mx_bynum2" jdbcType="NUMERIC" />
+		<result property= "mxBynum3" column="mx_bynum3" jdbcType="NUMERIC" />
+		<result property= "unitType" column="unit_type" jdbcType="NUMERIC" />
+		<result property= "barcode" column="barcode" jdbcType="VARCHAR" />
+		<result property= "nowUnit" column="now_unit" jdbcType="VARCHAR" />
+		<result property= "nowPack" column="now_pack" jdbcType="NUMERIC" />
+		<result property= "nowQty" column="now_qty" jdbcType="NUMERIC" />
+		<result property= "subQty" column="sub_qty" jdbcType="NUMERIC" />
+    </resultMap>
+
+    <sql id="whereId">
+        id=#{id}
+    </sql>
+
+    <sql id="columns">
+            sheet_no,
+            sheet_sn,
+            item_no,
+            org_price_value,
+            new_price_value,
+            mx_memo,
+            mx_bytxt1,
+            mx_bytxt2,
+            mx_bytxt3,
+            mx_bynum1,
+            mx_bynum2,
+            mx_bynum3,
+            unit_type,
+            barcode,
+            now_unit,
+            now_pack,
+            now_qty,
+            sub_qty
+    </sql>
+
+    <sql id="dynamicWhere">
+        <where>
+       	<if test="sheetNo != null"> AND sheet_no like '%${sheetNo}%' </if>
+       	<if test="sheetSn != null"> AND sheet_sn like '%${sheetSn}%' </if>
+       	<if test="itemNo != null"> AND item_no like '%${itemNo}%' </if>
+       	<if test="orgPriceValue != null"> AND org_price_value like '%${orgPriceValue}%' </if>
+       	<if test="newPriceValue != null"> AND new_price_value like '%${newPriceValue}%' </if>
+       	<if test="mxMemo != null"> AND mx_memo like '%${mxMemo}%' </if>
+       	<if test="mxBytxt1 != null"> AND mx_bytxt1 like '%${mxBytxt1}%' </if>
+       	<if test="mxBytxt2 != null"> AND mx_bytxt2 like '%${mxBytxt2}%' </if>
+       	<if test="mxBytxt3 != null"> AND mx_bytxt3 like '%${mxBytxt3}%' </if>
+       	<if test="mxBynum1 != null"> AND mx_bynum1 like '%${mxBynum1}%' </if>
+       	<if test="mxBynum2 != null"> AND mx_bynum2 like '%${mxBynum2}%' </if>
+       	<if test="mxBynum3 != null"> AND mx_bynum3 like '%${mxBynum3}%' </if>
+       	<if test="unitType != null"> AND unit_type like '%${unitType}%' </if>
+       	<if test="barcode != null"> AND barcode like '%${barcode}%' </if>
+       	<if test="nowUnit != null"> AND now_unit like '%${nowUnit}%' </if>
+       	<if test="nowPack != null"> AND now_pack like '%${nowPack}%' </if>
+       	<if test="nowQty != null"> AND now_qty like '%${nowQty}%' </if>
+       	<if test="subQty != null"> AND sub_qty like '%${subQty}%' </if>
+        </where>
+    </sql>
+
+    <sql id="oneWhere">
+        <where>
+       	<if test="sheetNo != null"> AND sheet_no = #{sheetNo}</if>
+       	<if test="sheetSn != null"> AND sheet_sn = #{sheetSn}</if>
+       	<if test="itemNo != null"> AND item_no = #{itemNo}</if>
+       	<if test="orgPriceValue != null"> AND org_price_value = #{orgPriceValue}</if>
+       	<if test="newPriceValue != null"> AND new_price_value = #{newPriceValue}</if>
+       	<if test="mxMemo != null"> AND mx_memo = #{mxMemo}</if>
+       	<if test="mxBytxt1 != null"> AND mx_bytxt1 = #{mxBytxt1}</if>
+       	<if test="mxBytxt2 != null"> AND mx_bytxt2 = #{mxBytxt2}</if>
+       	<if test="mxBytxt3 != null"> AND mx_bytxt3 = #{mxBytxt3}</if>
+       	<if test="mxBynum1 != null"> AND mx_bynum1 = #{mxBynum1}</if>
+       	<if test="mxBynum2 != null"> AND mx_bynum2 = #{mxBynum2}</if>
+       	<if test="mxBynum3 != null"> AND mx_bynum3 = #{mxBynum3}</if>
+       	<if test="unitType != null"> AND unit_type = #{unitType}</if>
+       	<if test="barcode != null"> AND barcode = #{barcode}</if>
+       	<if test="nowUnit != null"> AND now_unit = #{nowUnit}</if>
+       	<if test="nowPack != null"> AND now_pack = #{nowPack}</if>
+       	<if test="nowQty != null"> AND now_qty = #{nowQty}</if>
+       	<if test="subQty != null"> AND sub_qty = #{subQty}</if>
+        </where>
+    </sql>
+
+    <insert id="create" parameterType="com.yx.pos.model.CgSpecPriceDetail">
+        INSERT INTO t_cg_specPrice_detail
+        (<include refid="columns"/>)
+        VALUES(
+                #{sheetNo,jdbcType=VARCHAR},
+                #{sheetSn,jdbcType=NUMERIC},
+                #{itemNo,jdbcType=VARCHAR},
+                #{orgPriceValue,jdbcType=NUMERIC},
+                #{newPriceValue,jdbcType=NUMERIC},
+                #{mxMemo,jdbcType=VARCHAR},
+                #{mxBytxt1,jdbcType=VARCHAR},
+                #{mxBytxt2,jdbcType=VARCHAR},
+                #{mxBytxt3,jdbcType=VARCHAR},
+                #{mxBynum1,jdbcType=NUMERIC},
+                #{mxBynum2,jdbcType=NUMERIC},
+                #{mxBynum3,jdbcType=NUMERIC},
+                #{unitType,jdbcType=NUMERIC},
+                #{barcode,jdbcType=VARCHAR},
+                #{nowUnit,jdbcType=VARCHAR},
+                #{nowPack,jdbcType=NUMERIC},
+                #{nowQty,jdbcType=NUMERIC},
+                #{subQty,jdbcType=NUMERIC}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM t_cg_specPrice_detail
+        WHERE
+        <include refid="whereId"/>
+    </delete>
+    <update id="update" parameterType="com.yx.pos.model.CgSpecPriceDetail">
+        UPDATE t_cg_specPrice_detail SET
+                sheet_no=#{sheetNo,jdbcType=VARCHAR},
+                sheet_sn=#{sheetSn,jdbcType=NUMERIC},
+                item_no=#{itemNo,jdbcType=VARCHAR},
+                org_price_value=#{orgPriceValue,jdbcType=NUMERIC},
+                new_price_value=#{newPriceValue,jdbcType=NUMERIC},
+                mx_memo=#{mxMemo,jdbcType=VARCHAR},
+                mx_bytxt1=#{mxBytxt1,jdbcType=VARCHAR},
+                mx_bytxt2=#{mxBytxt2,jdbcType=VARCHAR},
+                mx_bytxt3=#{mxBytxt3,jdbcType=VARCHAR},
+                mx_bynum1=#{mxBynum1,jdbcType=NUMERIC},
+                mx_bynum2=#{mxBynum2,jdbcType=NUMERIC},
+                mx_bynum3=#{mxBynum3,jdbcType=NUMERIC},
+                unit_type=#{unitType,jdbcType=NUMERIC},
+                barcode=#{barcode,jdbcType=VARCHAR},
+                now_unit=#{nowUnit,jdbcType=VARCHAR},
+                now_pack=#{nowPack,jdbcType=NUMERIC},
+                now_qty=#{nowQty,jdbcType=NUMERIC},
+                sub_qty=#{subQty,jdbcType=NUMERIC}
+        WHERE
+        <include refid="whereId"/>
+    </update>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="CgSpecPriceDetail">
+        SELECT <include refid="columns"/>
+        FROM t_cg_specPrice_detail
+        WHERE
+        <include refid="whereId"/>
+    </select>
+
+    <select id="query" resultMap="CgSpecPriceDetail">
+        SELECT <include refid="columns"/>
+        FROM t_cg_specPrice_detail
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="search" resultMap="CgSpecPriceDetail">
+        SELECT <include refid="columns"/>
+        FROM t_cg_specPrice_detail
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="getOne" resultMap="CgSpecPriceDetail">
+        SELECT <include refid="columns"/>
+        FROM t_cg_specPrice_detail
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getList" resultMap="CgSpecPriceDetail">
+        SELECT <include refid="columns"/>
+        FROM t_cg_specPrice_detail
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getAll" resultMap="CgSpecPriceDetail">
+        SELECT <include refid="columns"/>
+        FROM t_cg_specPrice_detail
+    </select>
+</mapper>

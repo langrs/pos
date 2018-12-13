@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yx.pos.dao.PosSpMasterDao">
+    <resultMap id="PosSpMaster" type="com.yx.pos.model.PosSpMaster">
+		<result property= "sheetNo" column="sheet_no" jdbcType="VARCHAR" />
+		<result property= "branchNo" column="branch_no" jdbcType="VARCHAR" />
+		<result property= "specType" column="spec_type" jdbcType="VARCHAR" />
+		<result property= "viptypeNo" column="viptype_no" jdbcType="VARCHAR" />
+		<result property= "custNo" column="cust_no" jdbcType="VARCHAR" />
+		<result property= "startDate" column="start_date" jdbcType="TIMESTAMP" />
+		<result property= "endDate" column="end_date" jdbcType="TIMESTAMP" />
+		<result property= "startTime" column="start_time" jdbcType="VARCHAR" />
+		<result property= "endTime" column="end_time" jdbcType="VARCHAR" />
+		<result property= "weekSpec" column="week_spec" jdbcType="VARCHAR" />
+		<result property= "dealMan" column="deal_man" jdbcType="VARCHAR" />
+		<result property= "userId" column="user_id" jdbcType="VARCHAR" />
+		<result property= "operDate" column="oper_date" jdbcType="TIMESTAMP" />
+		<result property= "flag" column="flag" jdbcType="VARCHAR" />
+		<result property= "appSign" column="app_sign" jdbcType="VARCHAR" />
+		<result property= "appUser" column="app_user" jdbcType="VARCHAR" />
+		<result property= "memo" column="memo" jdbcType="VARCHAR" />
+		<result property= "bytxt1" column="bytxt1" jdbcType="VARCHAR" />
+		<result property= "bytxt2" column="bytxt2" jdbcType="VARCHAR" />
+		<result property= "bytxt3" column="bytxt3" jdbcType="VARCHAR" />
+		<result property= "bynum1" column="bynum1" jdbcType="NUMERIC" />
+		<result property= "bynum2" column="bynum2" jdbcType="NUMERIC" />
+		<result property= "bynum3" column="bynum3" jdbcType="NUMERIC" />
+		<result property= "daySpec" column="day_spec" jdbcType="VARCHAR" />
+		<result property= "appDate" column="app_date" jdbcType="TIMESTAMP" />
+		<result property= "isStop" column="is_stop" jdbcType="VARCHAR" />
+		<result property= "stopDate" column="stop_date" jdbcType="TIMESTAMP" />
+		<result property= "stopUser" column="stop_user" jdbcType="VARCHAR" />
+		<result property= "updateFlow" column="update_flow" jdbcType="NUMERIC" />
+		<result property= "updateTime" column="update_time" jdbcType="TIMESTAMP" />
+		<result property= "updateBranch" column="update_branch" jdbcType="VARCHAR" />
+		<result property= "transUpflag" column="trans_upflag" jdbcType="VARCHAR" />
+		<result property= "createBranch" column="create_branch" jdbcType="VARCHAR" />
+		<result property= "sale1Qty" column="sale1_qty" jdbcType="NUMERIC" />
+		<result property= "zk1Rate" column="zk1_rate" jdbcType="NUMERIC" />
+		<result property= "sale2Qty" column="sale2_qty" jdbcType="NUMERIC" />
+		<result property= "zk2Rate" column="zk2_rate" jdbcType="NUMERIC" />
+		<result property= "sale3Qty" column="sale3_qty" jdbcType="NUMERIC" />
+		<result property= "zk3Rate" column="zk3_rate" jdbcType="NUMERIC" />
+		<result property= "sale4Qty" column="sale4_qty" jdbcType="NUMERIC" />
+		<result property= "zk4Rate" column="zk4_rate" jdbcType="NUMERIC" />
+		<result property= "sale5Qty" column="sale5_qty" jdbcType="NUMERIC" />
+		<result property= "zk5Rate" column="zk5_rate" jdbcType="NUMERIC" />
+		<result property= "sale6Qty" column="sale6_qty" jdbcType="NUMERIC" />
+		<result property= "zk6Rate" column="zk6_rate" jdbcType="NUMERIC" />
+		<result property= "stepType" column="step_type" jdbcType="VARCHAR" />
+		<result property= "integralRate" column="integral_rate" jdbcType="NUMERIC" />
+		<result property= "branchSpec" column="branch_spec" jdbcType="VARCHAR" />
+		<result property= "viptypeSpec" column="viptype_spec" jdbcType="VARCHAR" />
+		<result property= "isVip" column="is_vip" jdbcType="VARCHAR" />
+		<result property= "isPrice" column="is_price" jdbcType="VARCHAR" />
+		<result property= "limitQty" column="limit_qty" jdbcType="NUMERIC" />
+    </resultMap>
+
+    <sql id="whereId">
+        id=#{id}
+    </sql>
+
+    <sql id="columns">
+            sheet_no,
+            branch_no,
+            spec_type,
+            viptype_no,
+            cust_no,
+            start_date,
+            end_date,
+            start_time,
+            end_time,
+            week_spec,
+            deal_man,
+            user_id,
+            oper_date,
+            flag,
+            app_sign,
+            app_user,
+            memo,
+            bytxt1,
+            bytxt2,
+            bytxt3,
+            bynum1,
+            bynum2,
+            bynum3,
+            day_spec,
+            app_date,
+            is_stop,
+            stop_date,
+            stop_user,
+            update_flow,
+            update_time,
+            update_branch,
+            trans_upflag,
+            create_branch,
+            sale1_qty,
+            zk1_rate,
+            sale2_qty,
+            zk2_rate,
+            sale3_qty,
+            zk3_rate,
+            sale4_qty,
+            zk4_rate,
+            sale5_qty,
+            zk5_rate,
+            sale6_qty,
+            zk6_rate,
+            step_type,
+            integral_rate,
+            branch_spec,
+            viptype_spec,
+            is_vip,
+            is_price,
+            limit_qty
+    </sql>
+
+    <sql id="dynamicWhere">
+        <where>
+       	<if test="sheetNo != null"> AND sheet_no like '%${sheetNo}%' </if>
+       	<if test="branchNo != null"> AND branch_no like '%${branchNo}%' </if>
+       	<if test="specType != null"> AND spec_type like '%${specType}%' </if>
+       	<if test="viptypeNo != null"> AND viptype_no like '%${viptypeNo}%' </if>
+       	<if test="custNo != null"> AND cust_no like '%${custNo}%' </if>
+       	<if test="startDateStart != null"> AND  start_date <![CDATA[ >= ]]> #{startDateStart} AND start_date <![CDATA[ < ]]> #{startDateEnd}</if>
+       	<if test="endDateStart != null"> AND  end_date <![CDATA[ >= ]]> #{endDateStart} AND end_date <![CDATA[ < ]]> #{endDateEnd}</if>
+       	<if test="startTime != null"> AND start_time like '%${startTime}%' </if>
+       	<if test="endTime != null"> AND end_time like '%${endTime}%' </if>
+       	<if test="weekSpec != null"> AND week_spec like '%${weekSpec}%' </if>
+       	<if test="dealMan != null"> AND deal_man like '%${dealMan}%' </if>
+       	<if test="userId != null"> AND user_id like '%${userId}%' </if>
+       	<if test="operDateStart != null"> AND  oper_date <![CDATA[ >= ]]> #{operDateStart} AND oper_date <![CDATA[ < ]]> #{operDateEnd}</if>
+       	<if test="flag != null"> AND flag like '%${flag}%' </if>
+       	<if test="appSign != null"> AND app_sign like '%${appSign}%' </if>
+       	<if test="appUser != null"> AND app_user like '%${appUser}%' </if>
+       	<if test="memo != null"> AND memo like '%${memo}%' </if>
+       	<if test="bytxt1 != null"> AND bytxt1 like '%${bytxt1}%' </if>
+       	<if test="bytxt2 != null"> AND bytxt2 like '%${bytxt2}%' </if>
+       	<if test="bytxt3 != null"> AND bytxt3 like '%${bytxt3}%' </if>
+       	<if test="bynum1 != null"> AND bynum1 like '%${bynum1}%' </if>
+       	<if test="bynum2 != null"> AND bynum2 like '%${bynum2}%' </if>
+       	<if test="bynum3 != null"> AND bynum3 like '%${bynum3}%' </if>
+       	<if test="daySpec != null"> AND day_spec like '%${daySpec}%' </if>
+       	<if test="appDateStart != null"> AND  app_date <![CDATA[ >= ]]> #{appDateStart} AND app_date <![CDATA[ < ]]> #{appDateEnd}</if>
+       	<if test="isStop != null"> AND is_stop like '%${isStop}%' </if>
+       	<if test="stopDateStart != null"> AND  stop_date <![CDATA[ >= ]]> #{stopDateStart} AND stop_date <![CDATA[ < ]]> #{stopDateEnd}</if>
+       	<if test="stopUser != null"> AND stop_user like '%${stopUser}%' </if>
+       	<if test="updateFlow != null"> AND update_flow like '%${updateFlow}%' </if>
+       	<if test="updateTimeStart != null"> AND  update_time <![CDATA[ >= ]]> #{updateTimeStart} AND update_time <![CDATA[ < ]]> #{updateTimeEnd}</if>
+       	<if test="updateBranch != null"> AND update_branch like '%${updateBranch}%' </if>
+       	<if test="transUpflag != null"> AND trans_upflag like '%${transUpflag}%' </if>
+       	<if test="createBranch != null"> AND create_branch like '%${createBranch}%' </if>
+       	<if test="sale1Qty != null"> AND sale1_qty like '%${sale1Qty}%' </if>
+       	<if test="zk1Rate != null"> AND zk1_rate like '%${zk1Rate}%' </if>
+       	<if test="sale2Qty != null"> AND sale2_qty like '%${sale2Qty}%' </if>
+       	<if test="zk2Rate != null"> AND zk2_rate like '%${zk2Rate}%' </if>
+       	<if test="sale3Qty != null"> AND sale3_qty like '%${sale3Qty}%' </if>
+       	<if test="zk3Rate != null"> AND zk3_rate like '%${zk3Rate}%' </if>
+       	<if test="sale4Qty != null"> AND sale4_qty like '%${sale4Qty}%' </if>
+       	<if test="zk4Rate != null"> AND zk4_rate like '%${zk4Rate}%' </if>
+       	<if test="sale5Qty != null"> AND sale5_qty like '%${sale5Qty}%' </if>
+       	<if test="zk5Rate != null"> AND zk5_rate like '%${zk5Rate}%' </if>
+       	<if test="sale6Qty != null"> AND sale6_qty like '%${sale6Qty}%' </if>
+       	<if test="zk6Rate != null"> AND zk6_rate like '%${zk6Rate}%' </if>
+       	<if test="stepType != null"> AND step_type like '%${stepType}%' </if>
+       	<if test="integralRate != null"> AND integral_rate like '%${integralRate}%' </if>
+       	<if test="branchSpec != null"> AND branch_spec like '%${branchSpec}%' </if>
+       	<if test="viptypeSpec != null"> AND viptype_spec like '%${viptypeSpec}%' </if>
+       	<if test="isVip != null"> AND is_vip like '%${isVip}%' </if>
+       	<if test="isPrice != null"> AND is_price like '%${isPrice}%' </if>
+       	<if test="limitQty != null"> AND limit_qty like '%${limitQty}%' </if>
+        </where>
+    </sql>
+
+    <sql id="oneWhere">
+        <where>
+       	<if test="sheetNo != null"> AND sheet_no = #{sheetNo}</if>
+       	<if test="branchNo != null"> AND branch_no = #{branchNo}</if>
+       	<if test="specType != null"> AND spec_type = #{specType}</if>
+       	<if test="viptypeNo != null"> AND viptype_no = #{viptypeNo}</if>
+       	<if test="custNo != null"> AND cust_no = #{custNo}</if>
+       	<if test="startDateStart != null"> AND start_date <![CDATA[ >= ]]> #{startDateStart} AND start_date <![CDATA[ < ]]> #{startDateEnd}</if>
+       	<if test="endDateStart != null"> AND end_date <![CDATA[ >= ]]> #{endDateStart} AND end_date <![CDATA[ < ]]> #{endDateEnd}</if>
+       	<if test="startTime != null"> AND start_time = #{startTime}</if>
+       	<if test="endTime != null"> AND end_time = #{endTime}</if>
+       	<if test="weekSpec != null"> AND week_spec = #{weekSpec}</if>
+       	<if test="dealMan != null"> AND deal_man = #{dealMan}</if>
+       	<if test="userId != null"> AND user_id = #{userId}</if>
+       	<if test="operDateStart != null"> AND oper_date <![CDATA[ >= ]]> #{operDateStart} AND oper_date <![CDATA[ < ]]> #{operDateEnd}</if>
+       	<if test="flag != null"> AND flag = #{flag}</if>
+       	<if test="appSign != null"> AND app_sign = #{appSign}</if>
+       	<if test="appUser != null"> AND app_user = #{appUser}</if>
+       	<if test="memo != null"> AND memo = #{memo}</if>
+       	<if test="bytxt1 != null"> AND bytxt1 = #{bytxt1}</if>
+       	<if test="bytxt2 != null"> AND bytxt2 = #{bytxt2}</if>
+       	<if test="bytxt3 != null"> AND bytxt3 = #{bytxt3}</if>
+       	<if test="bynum1 != null"> AND bynum1 = #{bynum1}</if>
+       	<if test="bynum2 != null"> AND bynum2 = #{bynum2}</if>
+       	<if test="bynum3 != null"> AND bynum3 = #{bynum3}</if>
+       	<if test="daySpec != null"> AND day_spec = #{daySpec}</if>
+       	<if test="appDateStart != null"> AND app_date <![CDATA[ >= ]]> #{appDateStart} AND app_date <![CDATA[ < ]]> #{appDateEnd}</if>
+       	<if test="isStop != null"> AND is_stop = #{isStop}</if>
+       	<if test="stopDateStart != null"> AND stop_date <![CDATA[ >= ]]> #{stopDateStart} AND stop_date <![CDATA[ < ]]> #{stopDateEnd}</if>
+       	<if test="stopUser != null"> AND stop_user = #{stopUser}</if>
+       	<if test="updateFlow != null"> AND update_flow = #{updateFlow}</if>
+       	<if test="updateTimeStart != null"> AND update_time <![CDATA[ >= ]]> #{updateTimeStart} AND update_time <![CDATA[ < ]]> #{updateTimeEnd}</if>
+       	<if test="updateBranch != null"> AND update_branch = #{updateBranch}</if>
+       	<if test="transUpflag != null"> AND trans_upflag = #{transUpflag}</if>
+       	<if test="createBranch != null"> AND create_branch = #{createBranch}</if>
+       	<if test="sale1Qty != null"> AND sale1_qty = #{sale1Qty}</if>
+       	<if test="zk1Rate != null"> AND zk1_rate = #{zk1Rate}</if>
+       	<if test="sale2Qty != null"> AND sale2_qty = #{sale2Qty}</if>
+       	<if test="zk2Rate != null"> AND zk2_rate = #{zk2Rate}</if>
+       	<if test="sale3Qty != null"> AND sale3_qty = #{sale3Qty}</if>
+       	<if test="zk3Rate != null"> AND zk3_rate = #{zk3Rate}</if>
+       	<if test="sale4Qty != null"> AND sale4_qty = #{sale4Qty}</if>
+       	<if test="zk4Rate != null"> AND zk4_rate = #{zk4Rate}</if>
+       	<if test="sale5Qty != null"> AND sale5_qty = #{sale5Qty}</if>
+       	<if test="zk5Rate != null"> AND zk5_rate = #{zk5Rate}</if>
+       	<if test="sale6Qty != null"> AND sale6_qty = #{sale6Qty}</if>
+       	<if test="zk6Rate != null"> AND zk6_rate = #{zk6Rate}</if>
+       	<if test="stepType != null"> AND step_type = #{stepType}</if>
+       	<if test="integralRate != null"> AND integral_rate = #{integralRate}</if>
+       	<if test="branchSpec != null"> AND branch_spec = #{branchSpec}</if>
+       	<if test="viptypeSpec != null"> AND viptype_spec = #{viptypeSpec}</if>
+       	<if test="isVip != null"> AND is_vip = #{isVip}</if>
+       	<if test="isPrice != null"> AND is_price = #{isPrice}</if>
+       	<if test="limitQty != null"> AND limit_qty = #{limitQty}</if>
+        </where>
+    </sql>
+
+    <insert id="create" parameterType="com.yx.pos.model.PosSpMaster">
+        INSERT INTO t_pos_sp_master
+        (<include refid="columns"/>)
+        VALUES(
+                #{sheetNo,jdbcType=VARCHAR},
+                #{branchNo,jdbcType=VARCHAR},
+                #{specType,jdbcType=VARCHAR},
+                #{viptypeNo,jdbcType=VARCHAR},
+                #{custNo,jdbcType=VARCHAR},
+                #{startDate,jdbcType=TIMESTAMP},
+                #{endDate,jdbcType=TIMESTAMP},
+                #{startTime,jdbcType=VARCHAR},
+                #{endTime,jdbcType=VARCHAR},
+                #{weekSpec,jdbcType=VARCHAR},
+                #{dealMan,jdbcType=VARCHAR},
+                #{userId,jdbcType=VARCHAR},
+                #{operDate,jdbcType=TIMESTAMP},
+                #{flag,jdbcType=VARCHAR},
+                #{appSign,jdbcType=VARCHAR},
+                #{appUser,jdbcType=VARCHAR},
+                #{memo,jdbcType=VARCHAR},
+                #{bytxt1,jdbcType=VARCHAR},
+                #{bytxt2,jdbcType=VARCHAR},
+                #{bytxt3,jdbcType=VARCHAR},
+                #{bynum1,jdbcType=NUMERIC},
+                #{bynum2,jdbcType=NUMERIC},
+                #{bynum3,jdbcType=NUMERIC},
+                #{daySpec,jdbcType=VARCHAR},
+                #{appDate,jdbcType=TIMESTAMP},
+                #{isStop,jdbcType=VARCHAR},
+                #{stopDate,jdbcType=TIMESTAMP},
+                #{stopUser,jdbcType=VARCHAR},
+                #{updateFlow,jdbcType=NUMERIC},
+                #{updateTime,jdbcType=TIMESTAMP},
+                #{updateBranch,jdbcType=VARCHAR},
+                #{transUpflag,jdbcType=VARCHAR},
+                #{createBranch,jdbcType=VARCHAR},
+                #{sale1Qty,jdbcType=NUMERIC},
+                #{zk1Rate,jdbcType=NUMERIC},
+                #{sale2Qty,jdbcType=NUMERIC},
+                #{zk2Rate,jdbcType=NUMERIC},
+                #{sale3Qty,jdbcType=NUMERIC},
+                #{zk3Rate,jdbcType=NUMERIC},
+                #{sale4Qty,jdbcType=NUMERIC},
+                #{zk4Rate,jdbcType=NUMERIC},
+                #{sale5Qty,jdbcType=NUMERIC},
+                #{zk5Rate,jdbcType=NUMERIC},
+                #{sale6Qty,jdbcType=NUMERIC},
+                #{zk6Rate,jdbcType=NUMERIC},
+                #{stepType,jdbcType=VARCHAR},
+                #{integralRate,jdbcType=NUMERIC},
+                #{branchSpec,jdbcType=VARCHAR},
+                #{viptypeSpec,jdbcType=VARCHAR},
+                #{isVip,jdbcType=VARCHAR},
+                #{isPrice,jdbcType=VARCHAR},
+                #{limitQty,jdbcType=NUMERIC}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM t_pos_sp_master
+        WHERE
+        <include refid="whereId"/>
+    </delete>
+    <update id="update" parameterType="com.yx.pos.model.PosSpMaster">
+        UPDATE t_pos_sp_master SET
+                sheet_no=#{sheetNo,jdbcType=VARCHAR},
+                branch_no=#{branchNo,jdbcType=VARCHAR},
+                spec_type=#{specType,jdbcType=VARCHAR},
+                viptype_no=#{viptypeNo,jdbcType=VARCHAR},
+                cust_no=#{custNo,jdbcType=VARCHAR},
+                start_date=#{startDate,jdbcType=TIMESTAMP},
+                end_date=#{endDate,jdbcType=TIMESTAMP},
+                start_time=#{startTime,jdbcType=VARCHAR},
+                end_time=#{endTime,jdbcType=VARCHAR},
+                week_spec=#{weekSpec,jdbcType=VARCHAR},
+                deal_man=#{dealMan,jdbcType=VARCHAR},
+                user_id=#{userId,jdbcType=VARCHAR},
+                oper_date=#{operDate,jdbcType=TIMESTAMP},
+                flag=#{flag,jdbcType=VARCHAR},
+                app_sign=#{appSign,jdbcType=VARCHAR},
+                app_user=#{appUser,jdbcType=VARCHAR},
+                memo=#{memo,jdbcType=VARCHAR},
+                bytxt1=#{bytxt1,jdbcType=VARCHAR},
+                bytxt2=#{bytxt2,jdbcType=VARCHAR},
+                bytxt3=#{bytxt3,jdbcType=VARCHAR},
+                bynum1=#{bynum1,jdbcType=NUMERIC},
+                bynum2=#{bynum2,jdbcType=NUMERIC},
+                bynum3=#{bynum3,jdbcType=NUMERIC},
+                day_spec=#{daySpec,jdbcType=VARCHAR},
+                app_date=#{appDate,jdbcType=TIMESTAMP},
+                is_stop=#{isStop,jdbcType=VARCHAR},
+                stop_date=#{stopDate,jdbcType=TIMESTAMP},
+                stop_user=#{stopUser,jdbcType=VARCHAR},
+                update_flow=#{updateFlow,jdbcType=NUMERIC},
+                update_time=#{updateTime,jdbcType=TIMESTAMP},
+                update_branch=#{updateBranch,jdbcType=VARCHAR},
+                trans_upflag=#{transUpflag,jdbcType=VARCHAR},
+                create_branch=#{createBranch,jdbcType=VARCHAR},
+                sale1_qty=#{sale1Qty,jdbcType=NUMERIC},
+                zk1_rate=#{zk1Rate,jdbcType=NUMERIC},
+                sale2_qty=#{sale2Qty,jdbcType=NUMERIC},
+                zk2_rate=#{zk2Rate,jdbcType=NUMERIC},
+                sale3_qty=#{sale3Qty,jdbcType=NUMERIC},
+                zk3_rate=#{zk3Rate,jdbcType=NUMERIC},
+                sale4_qty=#{sale4Qty,jdbcType=NUMERIC},
+                zk4_rate=#{zk4Rate,jdbcType=NUMERIC},
+                sale5_qty=#{sale5Qty,jdbcType=NUMERIC},
+                zk5_rate=#{zk5Rate,jdbcType=NUMERIC},
+                sale6_qty=#{sale6Qty,jdbcType=NUMERIC},
+                zk6_rate=#{zk6Rate,jdbcType=NUMERIC},
+                step_type=#{stepType,jdbcType=VARCHAR},
+                integral_rate=#{integralRate,jdbcType=NUMERIC},
+                branch_spec=#{branchSpec,jdbcType=VARCHAR},
+                viptype_spec=#{viptypeSpec,jdbcType=VARCHAR},
+                is_vip=#{isVip,jdbcType=VARCHAR},
+                is_price=#{isPrice,jdbcType=VARCHAR},
+                limit_qty=#{limitQty,jdbcType=NUMERIC}
+        WHERE
+        <include refid="whereId"/>
+    </update>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="PosSpMaster">
+        SELECT <include refid="columns"/>
+        FROM t_pos_sp_master
+        WHERE
+        <include refid="whereId"/>
+    </select>
+
+    <select id="query" resultMap="PosSpMaster">
+        SELECT <include refid="columns"/>
+        FROM t_pos_sp_master
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="search" resultMap="PosSpMaster">
+        SELECT <include refid="columns"/>
+        FROM t_pos_sp_master
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="getOne" resultMap="PosSpMaster">
+        SELECT <include refid="columns"/>
+        FROM t_pos_sp_master
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getList" resultMap="PosSpMaster">
+        SELECT <include refid="columns"/>
+        FROM t_pos_sp_master
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getAll" resultMap="PosSpMaster">
+        SELECT <include refid="columns"/>
+        FROM t_pos_sp_master
+    </select>
+</mapper>

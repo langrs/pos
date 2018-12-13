@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yx.pos.dao.CgSpecPriceMasterDao">
+    <resultMap id="CgSpecPriceMaster" type="com.yx.pos.model.CgSpecPriceMaster">
+		<result property= "sheetNo" column="sheet_no" jdbcType="VARCHAR" />
+		<result property= "branchNo" column="branch_no" jdbcType="VARCHAR" />
+		<result property= "supNo" column="sup_no" jdbcType="VARCHAR" />
+		<result property= "manageType" column="manage_type" jdbcType="VARCHAR" />
+		<result property= "operDate" column="oper_date" jdbcType="TIMESTAMP" />
+		<result property= "startDate" column="start_date" jdbcType="TIMESTAMP" />
+		<result property= "endDate" column="end_date" jdbcType="TIMESTAMP" />
+		<result property= "userId" column="user_id" jdbcType="VARCHAR" />
+		<result property= "appSign" column="app_sign" jdbcType="VARCHAR" />
+		<result property= "appUser" column="app_user" jdbcType="VARCHAR" />
+		<result property= "createDate" column="create_date" jdbcType="TIMESTAMP" />
+		<result property= "appDate" column="app_date" jdbcType="TIMESTAMP" />
+		<result property= "memo" column="memo" jdbcType="VARCHAR" />
+		<result property= "bytxt1" column="bytxt1" jdbcType="VARCHAR" />
+		<result property= "bytxt2" column="bytxt2" jdbcType="VARCHAR" />
+		<result property= "bytxt3" column="bytxt3" jdbcType="VARCHAR" />
+		<result property= "bynum1" column="bynum1" jdbcType="NUMERIC" />
+		<result property= "bynum2" column="bynum2" jdbcType="NUMERIC" />
+		<result property= "bynum3" column="bynum3" jdbcType="NUMERIC" />
+		<result property= "updateFlow" column="update_flow" jdbcType="NUMERIC" />
+		<result property= "updateTime" column="update_time" jdbcType="TIMESTAMP" />
+		<result property= "updateBranch" column="update_branch" jdbcType="VARCHAR" />
+		<result property= "transUpflag" column="trans_upflag" jdbcType="VARCHAR" />
+		<result property= "createBranch" column="create_branch" jdbcType="VARCHAR" />
+		<result property= "cgspecType" column="cgspec_type" jdbcType="VARCHAR" />
+		<result property= "startTime" column="start_time" jdbcType="VARCHAR" />
+		<result property= "endTime" column="end_time" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="whereId">
+        id=#{id}
+    </sql>
+
+    <sql id="columns">
+            sheet_no,
+            branch_no,
+            sup_no,
+            manage_type,
+            oper_date,
+            start_date,
+            end_date,
+            user_id,
+            app_sign,
+            app_user,
+            create_date,
+            app_date,
+            memo,
+            bytxt1,
+            bytxt2,
+            bytxt3,
+            bynum1,
+            bynum2,
+            bynum3,
+            update_flow,
+            update_time,
+            update_branch,
+            trans_upflag,
+            create_branch,
+            cgspec_type,
+            start_time,
+            end_time
+    </sql>
+
+    <sql id="dynamicWhere">
+        <where>
+       	<if test="sheetNo != null"> AND sheet_no like '%${sheetNo}%' </if>
+       	<if test="branchNo != null"> AND branch_no like '%${branchNo}%' </if>
+       	<if test="supNo != null"> AND sup_no like '%${supNo}%' </if>
+       	<if test="manageType != null"> AND manage_type like '%${manageType}%' </if>
+       	<if test="operDateStart != null"> AND  oper_date <![CDATA[ >= ]]> #{operDateStart} AND oper_date <![CDATA[ < ]]> #{operDateEnd}</if>
+       	<if test="startDateStart != null"> AND  start_date <![CDATA[ >= ]]> #{startDateStart} AND start_date <![CDATA[ < ]]> #{startDateEnd}</if>
+       	<if test="endDateStart != null"> AND  end_date <![CDATA[ >= ]]> #{endDateStart} AND end_date <![CDATA[ < ]]> #{endDateEnd}</if>
+       	<if test="userId != null"> AND user_id like '%${userId}%' </if>
+       	<if test="appSign != null"> AND app_sign like '%${appSign}%' </if>
+       	<if test="appUser != null"> AND app_user like '%${appUser}%' </if>
+       	<if test="createDateStart != null"> AND  create_date <![CDATA[ >= ]]> #{createDateStart} AND create_date <![CDATA[ < ]]> #{createDateEnd}</if>
+       	<if test="appDateStart != null"> AND  app_date <![CDATA[ >= ]]> #{appDateStart} AND app_date <![CDATA[ < ]]> #{appDateEnd}</if>
+       	<if test="memo != null"> AND memo like '%${memo}%' </if>
+       	<if test="bytxt1 != null"> AND bytxt1 like '%${bytxt1}%' </if>
+       	<if test="bytxt2 != null"> AND bytxt2 like '%${bytxt2}%' </if>
+       	<if test="bytxt3 != null"> AND bytxt3 like '%${bytxt3}%' </if>
+       	<if test="bynum1 != null"> AND bynum1 like '%${bynum1}%' </if>
+       	<if test="bynum2 != null"> AND bynum2 like '%${bynum2}%' </if>
+       	<if test="bynum3 != null"> AND bynum3 like '%${bynum3}%' </if>
+       	<if test="updateFlow != null"> AND update_flow like '%${updateFlow}%' </if>
+       	<if test="updateTimeStart != null"> AND  update_time <![CDATA[ >= ]]> #{updateTimeStart} AND update_time <![CDATA[ < ]]> #{updateTimeEnd}</if>
+       	<if test="updateBranch != null"> AND update_branch like '%${updateBranch}%' </if>
+       	<if test="transUpflag != null"> AND trans_upflag like '%${transUpflag}%' </if>
+       	<if test="createBranch != null"> AND create_branch like '%${createBranch}%' </if>
+       	<if test="cgspecType != null"> AND cgspec_type like '%${cgspecType}%' </if>
+       	<if test="startTime != null"> AND start_time like '%${startTime}%' </if>
+       	<if test="endTime != null"> AND end_time like '%${endTime}%' </if>
+        </where>
+    </sql>
+
+    <sql id="oneWhere">
+        <where>
+       	<if test="sheetNo != null"> AND sheet_no = #{sheetNo}</if>
+       	<if test="branchNo != null"> AND branch_no = #{branchNo}</if>
+       	<if test="supNo != null"> AND sup_no = #{supNo}</if>
+       	<if test="manageType != null"> AND manage_type = #{manageType}</if>
+       	<if test="operDateStart != null"> AND oper_date <![CDATA[ >= ]]> #{operDateStart} AND oper_date <![CDATA[ < ]]> #{operDateEnd}</if>
+       	<if test="startDateStart != null"> AND start_date <![CDATA[ >= ]]> #{startDateStart} AND start_date <![CDATA[ < ]]> #{startDateEnd}</if>
+       	<if test="endDateStart != null"> AND end_date <![CDATA[ >= ]]> #{endDateStart} AND end_date <![CDATA[ < ]]> #{endDateEnd}</if>
+       	<if test="userId != null"> AND user_id = #{userId}</if>
+       	<if test="appSign != null"> AND app_sign = #{appSign}</if>
+       	<if test="appUser != null"> AND app_user = #{appUser}</if>
+       	<if test="createDateStart != null"> AND create_date <![CDATA[ >= ]]> #{createDateStart} AND create_date <![CDATA[ < ]]> #{createDateEnd}</if>
+       	<if test="appDateStart != null"> AND app_date <![CDATA[ >= ]]> #{appDateStart} AND app_date <![CDATA[ < ]]> #{appDateEnd}</if>
+       	<if test="memo != null"> AND memo = #{memo}</if>
+       	<if test="bytxt1 != null"> AND bytxt1 = #{bytxt1}</if>
+       	<if test="bytxt2 != null"> AND bytxt2 = #{bytxt2}</if>
+       	<if test="bytxt3 != null"> AND bytxt3 = #{bytxt3}</if>
+       	<if test="bynum1 != null"> AND bynum1 = #{bynum1}</if>
+       	<if test="bynum2 != null"> AND bynum2 = #{bynum2}</if>
+       	<if test="bynum3 != null"> AND bynum3 = #{bynum3}</if>
+       	<if test="updateFlow != null"> AND update_flow = #{updateFlow}</if>
+       	<if test="updateTimeStart != null"> AND update_time <![CDATA[ >= ]]> #{updateTimeStart} AND update_time <![CDATA[ < ]]> #{updateTimeEnd}</if>
+       	<if test="updateBranch != null"> AND update_branch = #{updateBranch}</if>
+       	<if test="transUpflag != null"> AND trans_upflag = #{transUpflag}</if>
+       	<if test="createBranch != null"> AND create_branch = #{createBranch}</if>
+       	<if test="cgspecType != null"> AND cgspec_type = #{cgspecType}</if>
+       	<if test="startTime != null"> AND start_time = #{startTime}</if>
+       	<if test="endTime != null"> AND end_time = #{endTime}</if>
+        </where>
+    </sql>
+
+    <insert id="create" parameterType="com.yx.pos.model.CgSpecPriceMaster">
+        INSERT INTO t_cg_specPrice_master
+        (<include refid="columns"/>)
+        VALUES(
+                #{sheetNo,jdbcType=VARCHAR},
+                #{branchNo,jdbcType=VARCHAR},
+                #{supNo,jdbcType=VARCHAR},
+                #{manageType,jdbcType=VARCHAR},
+                #{operDate,jdbcType=TIMESTAMP},
+                #{startDate,jdbcType=TIMESTAMP},
+                #{endDate,jdbcType=TIMESTAMP},
+                #{userId,jdbcType=VARCHAR},
+                #{appSign,jdbcType=VARCHAR},
+                #{appUser,jdbcType=VARCHAR},
+                #{createDate,jdbcType=TIMESTAMP},
+                #{appDate,jdbcType=TIMESTAMP},
+                #{memo,jdbcType=VARCHAR},
+                #{bytxt1,jdbcType=VARCHAR},
+                #{bytxt2,jdbcType=VARCHAR},
+                #{bytxt3,jdbcType=VARCHAR},
+                #{bynum1,jdbcType=NUMERIC},
+                #{bynum2,jdbcType=NUMERIC},
+                #{bynum3,jdbcType=NUMERIC},
+                #{updateFlow,jdbcType=NUMERIC},
+                #{updateTime,jdbcType=TIMESTAMP},
+                #{updateBranch,jdbcType=VARCHAR},
+                #{transUpflag,jdbcType=VARCHAR},
+                #{createBranch,jdbcType=VARCHAR},
+                #{cgspecType,jdbcType=VARCHAR},
+                #{startTime,jdbcType=VARCHAR},
+                #{endTime,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM t_cg_specPrice_master
+        WHERE
+        <include refid="whereId"/>
+    </delete>
+    <update id="update" parameterType="com.yx.pos.model.CgSpecPriceMaster">
+        UPDATE t_cg_specPrice_master SET
+                sheet_no=#{sheetNo,jdbcType=VARCHAR},
+                branch_no=#{branchNo,jdbcType=VARCHAR},
+                sup_no=#{supNo,jdbcType=VARCHAR},
+                manage_type=#{manageType,jdbcType=VARCHAR},
+                oper_date=#{operDate,jdbcType=TIMESTAMP},
+                start_date=#{startDate,jdbcType=TIMESTAMP},
+                end_date=#{endDate,jdbcType=TIMESTAMP},
+                user_id=#{userId,jdbcType=VARCHAR},
+                app_sign=#{appSign,jdbcType=VARCHAR},
+                app_user=#{appUser,jdbcType=VARCHAR},
+                create_date=#{createDate,jdbcType=TIMESTAMP},
+                app_date=#{appDate,jdbcType=TIMESTAMP},
+                memo=#{memo,jdbcType=VARCHAR},
+                bytxt1=#{bytxt1,jdbcType=VARCHAR},
+                bytxt2=#{bytxt2,jdbcType=VARCHAR},
+                bytxt3=#{bytxt3,jdbcType=VARCHAR},
+                bynum1=#{bynum1,jdbcType=NUMERIC},
+                bynum2=#{bynum2,jdbcType=NUMERIC},
+                bynum3=#{bynum3,jdbcType=NUMERIC},
+                update_flow=#{updateFlow,jdbcType=NUMERIC},
+                update_time=#{updateTime,jdbcType=TIMESTAMP},
+                update_branch=#{updateBranch,jdbcType=VARCHAR},
+                trans_upflag=#{transUpflag,jdbcType=VARCHAR},
+                create_branch=#{createBranch,jdbcType=VARCHAR},
+                cgspec_type=#{cgspecType,jdbcType=VARCHAR},
+                start_time=#{startTime,jdbcType=VARCHAR},
+                end_time=#{endTime,jdbcType=VARCHAR}
+        WHERE
+        <include refid="whereId"/>
+    </update>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="CgSpecPriceMaster">
+        SELECT <include refid="columns"/>
+        FROM t_cg_specPrice_master
+        WHERE
+        <include refid="whereId"/>
+    </select>
+
+    <select id="query" resultMap="CgSpecPriceMaster">
+        SELECT <include refid="columns"/>
+        FROM t_cg_specPrice_master
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="search" resultMap="CgSpecPriceMaster">
+        SELECT <include refid="columns"/>
+        FROM t_cg_specPrice_master
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="getOne" resultMap="CgSpecPriceMaster">
+        SELECT <include refid="columns"/>
+        FROM t_cg_specPrice_master
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getList" resultMap="CgSpecPriceMaster">
+        SELECT <include refid="columns"/>
+        FROM t_cg_specPrice_master
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getAll" resultMap="CgSpecPriceMaster">
+        SELECT <include refid="columns"/>
+        FROM t_cg_specPrice_master
+    </select>
+</mapper>

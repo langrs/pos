@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yx.pos.dao.SupInfoDao">
+    <resultMap id="SupInfo" type="com.yx.pos.model.SupInfo">
+		<result property= "supNo" column="sup_no" jdbcType="VARCHAR" />
+		<result property= "supName" column="sup_name" jdbcType="VARCHAR" />
+		<result property= "suptypeNo" column="suptype_no" jdbcType="VARCHAR" />
+		<result property= "pyCode" column="py_code" jdbcType="VARCHAR" />
+		<result property= "regionNo" column="region_no" jdbcType="VARCHAR" />
+		<result property= "manageType" column="Manage_type" jdbcType="VARCHAR" />
+		<result property= "supMan" column="sup_man" jdbcType="VARCHAR" />
+		<result property= "dealMan" column="deal_man" jdbcType="VARCHAR" />
+		<result property= "supAddress" column="sup_address" jdbcType="VARCHAR" />
+		<result property= "supZip" column="sup_zip" jdbcType="VARCHAR" />
+		<result property= "supEmail" column="sup_email" jdbcType="VARCHAR" />
+		<result property= "supTel" column="sup_tel" jdbcType="VARCHAR" />
+		<result property= "supMobil" column="sup_mobil" jdbcType="VARCHAR" />
+		<result property= "supFax" column="sup_fax" jdbcType="VARCHAR" />
+		<result property= "supAcctBank" column="sup_acct_bank" jdbcType="VARCHAR" />
+		<result property= "supAcctNo" column="sup_acct_no" jdbcType="VARCHAR" />
+		<result property= "displayFlag" column="display_flag" jdbcType="VARCHAR" />
+		<result property= "initAmt" column="init_amt" jdbcType="NUMERIC" />
+		<result property= "allowIn" column="allow_in" jdbcType="VARCHAR" />
+		<result property= "allowAccout" column="allow_accout" jdbcType="VARCHAR" />
+		<result property= "checkFlag" column="check_flag" jdbcType="VARCHAR" />
+		<result property= "checkDay" column="check_day" jdbcType="NUMERIC" />
+		<result property= "supDistStatus" column="sup_Dist_status" jdbcType="VARCHAR" />
+		<result property= "supStockStatus" column="sup_Stock_status" jdbcType="VARCHAR" />
+		<result property= "supEntRegname" column="sup_ent_regname" jdbcType="VARCHAR" />
+		<result property= "supEntCorporate" column="sup_ent_Corporate" jdbcType="VARCHAR" />
+		<result property= "supEntAddress" column="sup_ent_address" jdbcType="VARCHAR" />
+		<result property= "supEntMoney" column="sup_ent_money" jdbcType="VARCHAR" />
+		<result property= "supEntValid" column="sup_ent_Valid" jdbcType="TIMESTAMP" />
+		<result property= "supEntType" column="sup_ent_type" jdbcType="VARCHAR" />
+		<result property= "supEntLicence" column="sup_ent_licence" jdbcType="VARCHAR" />
+		<result property= "supEntTlicence" column="sup_ent_Tlicence" jdbcType="VARCHAR" />
+		<result property= "supEntPlicense" column="sup_ent_Plicense" jdbcType="VARCHAR" />
+		<result property= "supEntHlicense" column="sup_ent_Hlicense" jdbcType="VARCHAR" />
+		<result property= "supEntDeal" column="sup_ent_deal" jdbcType="VARCHAR" />
+		<result property= "supEntScope" column="sup_ent_Scope" jdbcType="VARCHAR" />
+		<result property= "supEntIndustry" column="sup_ent_Industry" jdbcType="VARCHAR" />
+		<result property= "supEntCertification" column="sup_ent_Certification" jdbcType="VARCHAR" />
+		<result property= "supEntRegunit" column="sup_ent_regunit" jdbcType="VARCHAR" />
+		<result property= "supEntRegdate" column="sup_ent_regdate" jdbcType="TIMESTAMP" />
+		<result property= "supMemo" column="sup_memo" jdbcType="VARCHAR" />
+		<result property= "createDate" column="create_date" jdbcType="TIMESTAMP" />
+		<result property= "createUser" column="create_user" jdbcType="VARCHAR" />
+		<result property= "modifyDate" column="modify_date" jdbcType="TIMESTAMP" />
+		<result property= "modifyUser" column="modify_user" jdbcType="VARCHAR" />
+		<result property= "lockUser" column="lock_user" jdbcType="VARCHAR" />
+		<result property= "isSysFlag" column="IsSysFlag" jdbcType="VARCHAR" />
+		<result property= "supBytxt1" column="sup_bytxt1" jdbcType="VARCHAR" />
+		<result property= "supBytxt2" column="sup_bytxt2" jdbcType="VARCHAR" />
+		<result property= "supBytxt3" column="sup_bytxt3" jdbcType="VARCHAR" />
+		<result property= "supBynum1" column="sup_bynum1" jdbcType="NUMERIC" />
+		<result property= "supBynum2" column="sup_bynum2" jdbcType="NUMERIC" />
+		<result property= "supBynum3" column="sup_bynum3" jdbcType="NUMERIC" />
+		<result property= "updateFlow" column="update_flow" jdbcType="NUMERIC" />
+		<result property= "manageLyRate" column="Manage_ly_rate" jdbcType="NUMERIC" />
+		<result property= "branchNo" column="branch_no" jdbcType="VARCHAR" />
+		<result property= "updateTime" column="update_time" jdbcType="TIMESTAMP" />
+		<result property= "updateBranch" column="update_branch" jdbcType="VARCHAR" />
+		<result property= "freightPayer" column="Freight_Payer" jdbcType="VARCHAR" />
+		<result property= "supSelfSettle" column="sup_Self_Settle" jdbcType="VARCHAR" />
+		<result property= "supUser" column="sup_user" jdbcType="VARCHAR" />
+		<result property= "supPwd" column="sup_pwd" jdbcType="VARCHAR" />
+		<result property= "transUpflag" column="trans_upflag" jdbcType="VARCHAR" />
+		<result property= "wxOpenid" column="wx_openid" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="whereId">
+        id=#{id}
+    </sql>
+
+    <sql id="columns">
+            sup_no,
+            sup_name,
+            suptype_no,
+            py_code,
+            region_no,
+            Manage_type,
+            sup_man,
+            deal_man,
+            sup_address,
+            sup_zip,
+            sup_email,
+            sup_tel,
+            sup_mobil,
+            sup_fax,
+            sup_acct_bank,
+            sup_acct_no,
+            display_flag,
+            init_amt,
+            allow_in,
+            allow_accout,
+            check_flag,
+            check_day,
+            sup_Dist_status,
+            sup_Stock_status,
+            sup_ent_regname,
+            sup_ent_Corporate,
+            sup_ent_address,
+            sup_ent_money,
+            sup_ent_Valid,
+            sup_ent_type,
+            sup_ent_licence,
+            sup_ent_Tlicence,
+            sup_ent_Plicense,
+            sup_ent_Hlicense,
+            sup_ent_deal,
+            sup_ent_Scope,
+            sup_ent_Industry,
+            sup_ent_Certification,
+            sup_ent_regunit,
+            sup_ent_regdate,
+            sup_memo,
+            create_date,
+            create_user,
+            modify_date,
+            modify_user,
+            lock_user,
+            IsSysFlag,
+            sup_bytxt1,
+            sup_bytxt2,
+            sup_bytxt3,
+            sup_bynum1,
+            sup_bynum2,
+            sup_bynum3,
+            update_flow,
+            Manage_ly_rate,
+            branch_no,
+            update_time,
+            update_branch,
+            Freight_Payer,
+            sup_Self_Settle,
+            sup_user,
+            sup_pwd,
+            trans_upflag,
+            wx_openid
+    </sql>
+
+    <sql id="dynamicWhere">
+        <where>
+       	<if test="supNo != null"> AND sup_no like '%${supNo}%' </if>
+       	<if test="supName != null"> AND sup_name like '%${supName}%' </if>
+       	<if test="suptypeNo != null"> AND suptype_no like '%${suptypeNo}%' </if>
+       	<if test="pyCode != null"> AND py_code like '%${pyCode}%' </if>
+       	<if test="regionNo != null"> AND region_no like '%${regionNo}%' </if>
+       	<if test="manageType != null"> AND Manage_type like '%${manageType}%' </if>
+       	<if test="supMan != null"> AND sup_man like '%${supMan}%' </if>
+       	<if test="dealMan != null"> AND deal_man like '%${dealMan}%' </if>
+       	<if test="supAddress != null"> AND sup_address like '%${supAddress}%' </if>
+       	<if test="supZip != null"> AND sup_zip like '%${supZip}%' </if>
+       	<if test="supEmail != null"> AND sup_email like '%${supEmail}%' </if>
+       	<if test="supTel != null"> AND sup_tel like '%${supTel}%' </if>
+       	<if test="supMobil != null"> AND sup_mobil like '%${supMobil}%' </if>
+       	<if test="supFax != null"> AND sup_fax like '%${supFax}%' </if>
+       	<if test="supAcctBank != null"> AND sup_acct_bank like '%${supAcctBank}%' </if>
+       	<if test="supAcctNo != null"> AND sup_acct_no like '%${supAcctNo}%' </if>
+       	<if test="displayFlag != null"> AND display_flag like '%${displayFlag}%' </if>
+       	<if test="initAmt != null"> AND init_amt like '%${initAmt}%' </if>
+       	<if test="allowIn != null"> AND allow_in like '%${allowIn}%' </if>
+       	<if test="allowAccout != null"> AND allow_accout like '%${allowAccout}%' </if>
+       	<if test="checkFlag != null"> AND check_flag like '%${checkFlag}%' </if>
+       	<if test="checkDay != null"> AND check_day like '%${checkDay}%' </if>
+       	<if test="supDistStatus != null"> AND sup_Dist_status like '%${supDistStatus}%' </if>
+       	<if test="supStockStatus != null"> AND sup_Stock_status like '%${supStockStatus}%' </if>
+       	<if test="supEntRegname != null"> AND sup_ent_regname like '%${supEntRegname}%' </if>
+       	<if test="supEntCorporate != null"> AND sup_ent_Corporate like '%${supEntCorporate}%' </if>
+       	<if test="supEntAddress != null"> AND sup_ent_address like '%${supEntAddress}%' </if>
+       	<if test="supEntMoney != null"> AND sup_ent_money like '%${supEntMoney}%' </if>
+       	<if test="supEntValidStart != null"> AND  sup_ent_Valid <![CDATA[ >= ]]> #{supEntValidStart} AND sup_ent_Valid <![CDATA[ < ]]> #{supEntValidEnd}</if>
+       	<if test="supEntType != null"> AND sup_ent_type like '%${supEntType}%' </if>
+       	<if test="supEntLicence != null"> AND sup_ent_licence like '%${supEntLicence}%' </if>
+       	<if test="supEntTlicence != null"> AND sup_ent_Tlicence like '%${supEntTlicence}%' </if>
+       	<if test="supEntPlicense != null"> AND sup_ent_Plicense like '%${supEntPlicense}%' </if>
+       	<if test="supEntHlicense != null"> AND sup_ent_Hlicense like '%${supEntHlicense}%' </if>
+       	<if test="supEntDeal != null"> AND sup_ent_deal like '%${supEntDeal}%' </if>
+       	<if test="supEntScope != null"> AND sup_ent_Scope like '%${supEntScope}%' </if>
+       	<if test="supEntIndustry != null"> AND sup_ent_Industry like '%${supEntIndustry}%' </if>
+       	<if test="supEntCertification != null"> AND sup_ent_Certification like '%${supEntCertification}%' </if>
+       	<if test="supEntRegunit != null"> AND sup_ent_regunit like '%${supEntRegunit}%' </if>
+       	<if test="supEntRegdateStart != null"> AND  sup_ent_regdate <![CDATA[ >= ]]> #{supEntRegdateStart} AND sup_ent_regdate <![CDATA[ < ]]> #{supEntRegdateEnd}</if>
+       	<if test="supMemo != null"> AND sup_memo like '%${supMemo}%' </if>
+       	<if test="createDateStart != null"> AND  create_date <![CDATA[ >= ]]> #{createDateStart} AND create_date <![CDATA[ < ]]> #{createDateEnd}</if>
+       	<if test="createUser != null"> AND create_user like '%${createUser}%' </if>
+       	<if test="modifyDateStart != null"> AND  modify_date <![CDATA[ >= ]]> #{modifyDateStart} AND modify_date <![CDATA[ < ]]> #{modifyDateEnd}</if>
+       	<if test="modifyUser != null"> AND modify_user like '%${modifyUser}%' </if>
+       	<if test="lockUser != null"> AND lock_user like '%${lockUser}%' </if>
+       	<if test="isSysFlag != null"> AND IsSysFlag like '%${isSysFlag}%' </if>
+       	<if test="supBytxt1 != null"> AND sup_bytxt1 like '%${supBytxt1}%' </if>
+       	<if test="supBytxt2 != null"> AND sup_bytxt2 like '%${supBytxt2}%' </if>
+       	<if test="supBytxt3 != null"> AND sup_bytxt3 like '%${supBytxt3}%' </if>
+       	<if test="supBynum1 != null"> AND sup_bynum1 like '%${supBynum1}%' </if>
+       	<if test="supBynum2 != null"> AND sup_bynum2 like '%${supBynum2}%' </if>
+       	<if test="supBynum3 != null"> AND sup_bynum3 like '%${supBynum3}%' </if>
+       	<if test="updateFlow != null"> AND update_flow like '%${updateFlow}%' </if>
+       	<if test="manageLyRate != null"> AND Manage_ly_rate like '%${manageLyRate}%' </if>
+       	<if test="branchNo != null"> AND branch_no like '%${branchNo}%' </if>
+       	<if test="updateTimeStart != null"> AND  update_time <![CDATA[ >= ]]> #{updateTimeStart} AND update_time <![CDATA[ < ]]> #{updateTimeEnd}</if>
+       	<if test="updateBranch != null"> AND update_branch like '%${updateBranch}%' </if>
+       	<if test="freightPayer != null"> AND Freight_Payer like '%${freightPayer}%' </if>
+       	<if test="supSelfSettle != null"> AND sup_Self_Settle like '%${supSelfSettle}%' </if>
+       	<if test="supUser != null"> AND sup_user like '%${supUser}%' </if>
+       	<if test="supPwd != null"> AND sup_pwd like '%${supPwd}%' </if>
+       	<if test="transUpflag != null"> AND trans_upflag like '%${transUpflag}%' </if>
+       	<if test="wxOpenid != null"> AND wx_openid like '%${wxOpenid}%' </if>
+        </where>
+    </sql>
+
+    <sql id="oneWhere">
+        <where>
+       	<if test="supNo != null"> AND sup_no = #{supNo}</if>
+       	<if test="supName != null"> AND sup_name = #{supName}</if>
+       	<if test="suptypeNo != null"> AND suptype_no = #{suptypeNo}</if>
+       	<if test="pyCode != null"> AND py_code = #{pyCode}</if>
+       	<if test="regionNo != null"> AND region_no = #{regionNo}</if>
+       	<if test="manageType != null"> AND Manage_type = #{manageType}</if>
+       	<if test="supMan != null"> AND sup_man = #{supMan}</if>
+       	<if test="dealMan != null"> AND deal_man = #{dealMan}</if>
+       	<if test="supAddress != null"> AND sup_address = #{supAddress}</if>
+       	<if test="supZip != null"> AND sup_zip = #{supZip}</if>
+       	<if test="supEmail != null"> AND sup_email = #{supEmail}</if>
+       	<if test="supTel != null"> AND sup_tel = #{supTel}</if>
+       	<if test="supMobil != null"> AND sup_mobil = #{supMobil}</if>
+       	<if test="supFax != null"> AND sup_fax = #{supFax}</if>
+       	<if test="supAcctBank != null"> AND sup_acct_bank = #{supAcctBank}</if>
+       	<if test="supAcctNo != null"> AND sup_acct_no = #{supAcctNo}</if>
+       	<if test="displayFlag != null"> AND display_flag = #{displayFlag}</if>
+       	<if test="initAmt != null"> AND init_amt = #{initAmt}</if>
+       	<if test="allowIn != null"> AND allow_in = #{allowIn}</if>
+       	<if test="allowAccout != null"> AND allow_accout = #{allowAccout}</if>
+       	<if test="checkFlag != null"> AND check_flag = #{checkFlag}</if>
+       	<if test="checkDay != null"> AND check_day = #{checkDay}</if>
+       	<if test="supDistStatus != null"> AND sup_Dist_status = #{supDistStatus}</if>
+       	<if test="supStockStatus != null"> AND sup_Stock_status = #{supStockStatus}</if>
+       	<if test="supEntRegname != null"> AND sup_ent_regname = #{supEntRegname}</if>
+       	<if test="supEntCorporate != null"> AND sup_ent_Corporate = #{supEntCorporate}</if>
+       	<if test="supEntAddress != null"> AND sup_ent_address = #{supEntAddress}</if>
+       	<if test="supEntMoney != null"> AND sup_ent_money = #{supEntMoney}</if>
+       	<if test="supEntValidStart != null"> AND sup_ent_Valid <![CDATA[ >= ]]> #{supEntValidStart} AND sup_ent_Valid <![CDATA[ < ]]> #{supEntValidEnd}</if>
+       	<if test="supEntType != null"> AND sup_ent_type = #{supEntType}</if>
+       	<if test="supEntLicence != null"> AND sup_ent_licence = #{supEntLicence}</if>
+       	<if test="supEntTlicence != null"> AND sup_ent_Tlicence = #{supEntTlicence}</if>
+       	<if test="supEntPlicense != null"> AND sup_ent_Plicense = #{supEntPlicense}</if>
+       	<if test="supEntHlicense != null"> AND sup_ent_Hlicense = #{supEntHlicense}</if>
+       	<if test="supEntDeal != null"> AND sup_ent_deal = #{supEntDeal}</if>
+       	<if test="supEntScope != null"> AND sup_ent_Scope = #{supEntScope}</if>
+       	<if test="supEntIndustry != null"> AND sup_ent_Industry = #{supEntIndustry}</if>
+       	<if test="supEntCertification != null"> AND sup_ent_Certification = #{supEntCertification}</if>
+       	<if test="supEntRegunit != null"> AND sup_ent_regunit = #{supEntRegunit}</if>
+       	<if test="supEntRegdateStart != null"> AND sup_ent_regdate <![CDATA[ >= ]]> #{supEntRegdateStart} AND sup_ent_regdate <![CDATA[ < ]]> #{supEntRegdateEnd}</if>
+       	<if test="supMemo != null"> AND sup_memo = #{supMemo}</if>
+       	<if test="createDateStart != null"> AND create_date <![CDATA[ >= ]]> #{createDateStart} AND create_date <![CDATA[ < ]]> #{createDateEnd}</if>
+       	<if test="createUser != null"> AND create_user = #{createUser}</if>
+       	<if test="modifyDateStart != null"> AND modify_date <![CDATA[ >= ]]> #{modifyDateStart} AND modify_date <![CDATA[ < ]]> #{modifyDateEnd}</if>
+       	<if test="modifyUser != null"> AND modify_user = #{modifyUser}</if>
+       	<if test="lockUser != null"> AND lock_user = #{lockUser}</if>
+       	<if test="isSysFlag != null"> AND IsSysFlag = #{isSysFlag}</if>
+       	<if test="supBytxt1 != null"> AND sup_bytxt1 = #{supBytxt1}</if>
+       	<if test="supBytxt2 != null"> AND sup_bytxt2 = #{supBytxt2}</if>
+       	<if test="supBytxt3 != null"> AND sup_bytxt3 = #{supBytxt3}</if>
+       	<if test="supBynum1 != null"> AND sup_bynum1 = #{supBynum1}</if>
+       	<if test="supBynum2 != null"> AND sup_bynum2 = #{supBynum2}</if>
+       	<if test="supBynum3 != null"> AND sup_bynum3 = #{supBynum3}</if>
+       	<if test="updateFlow != null"> AND update_flow = #{updateFlow}</if>
+       	<if test="manageLyRate != null"> AND Manage_ly_rate = #{manageLyRate}</if>
+       	<if test="branchNo != null"> AND branch_no = #{branchNo}</if>
+       	<if test="updateTimeStart != null"> AND update_time <![CDATA[ >= ]]> #{updateTimeStart} AND update_time <![CDATA[ < ]]> #{updateTimeEnd}</if>
+       	<if test="updateBranch != null"> AND update_branch = #{updateBranch}</if>
+       	<if test="freightPayer != null"> AND Freight_Payer = #{freightPayer}</if>
+       	<if test="supSelfSettle != null"> AND sup_Self_Settle = #{supSelfSettle}</if>
+       	<if test="supUser != null"> AND sup_user = #{supUser}</if>
+       	<if test="supPwd != null"> AND sup_pwd = #{supPwd}</if>
+       	<if test="transUpflag != null"> AND trans_upflag = #{transUpflag}</if>
+       	<if test="wxOpenid != null"> AND wx_openid = #{wxOpenid}</if>
+        </where>
+    </sql>
+
+    <insert id="create" parameterType="com.yx.pos.model.SupInfo">
+        INSERT INTO t_sup_info
+        (<include refid="columns"/>)
+        VALUES(
+                #{supNo,jdbcType=VARCHAR},
+                #{supName,jdbcType=VARCHAR},
+                #{suptypeNo,jdbcType=VARCHAR},
+                #{pyCode,jdbcType=VARCHAR},
+                #{regionNo,jdbcType=VARCHAR},
+                #{manageType,jdbcType=VARCHAR},
+                #{supMan,jdbcType=VARCHAR},
+                #{dealMan,jdbcType=VARCHAR},
+                #{supAddress,jdbcType=VARCHAR},
+                #{supZip,jdbcType=VARCHAR},
+                #{supEmail,jdbcType=VARCHAR},
+                #{supTel,jdbcType=VARCHAR},
+                #{supMobil,jdbcType=VARCHAR},
+                #{supFax,jdbcType=VARCHAR},
+                #{supAcctBank,jdbcType=VARCHAR},
+                #{supAcctNo,jdbcType=VARCHAR},
+                #{displayFlag,jdbcType=VARCHAR},
+                #{initAmt,jdbcType=NUMERIC},
+                #{allowIn,jdbcType=VARCHAR},
+                #{allowAccout,jdbcType=VARCHAR},
+                #{checkFlag,jdbcType=VARCHAR},
+                #{checkDay,jdbcType=NUMERIC},
+                #{supDistStatus,jdbcType=VARCHAR},
+                #{supStockStatus,jdbcType=VARCHAR},
+                #{supEntRegname,jdbcType=VARCHAR},
+                #{supEntCorporate,jdbcType=VARCHAR},
+                #{supEntAddress,jdbcType=VARCHAR},
+                #{supEntMoney,jdbcType=VARCHAR},
+                #{supEntValid,jdbcType=TIMESTAMP},
+                #{supEntType,jdbcType=VARCHAR},
+                #{supEntLicence,jdbcType=VARCHAR},
+                #{supEntTlicence,jdbcType=VARCHAR},
+                #{supEntPlicense,jdbcType=VARCHAR},
+                #{supEntHlicense,jdbcType=VARCHAR},
+                #{supEntDeal,jdbcType=VARCHAR},
+                #{supEntScope,jdbcType=VARCHAR},
+                #{supEntIndustry,jdbcType=VARCHAR},
+                #{supEntCertification,jdbcType=VARCHAR},
+                #{supEntRegunit,jdbcType=VARCHAR},
+                #{supEntRegdate,jdbcType=TIMESTAMP},
+                #{supMemo,jdbcType=VARCHAR},
+                #{createDate,jdbcType=TIMESTAMP},
+                #{createUser,jdbcType=VARCHAR},
+                #{modifyDate,jdbcType=TIMESTAMP},
+                #{modifyUser,jdbcType=VARCHAR},
+                #{lockUser,jdbcType=VARCHAR},
+                #{isSysFlag,jdbcType=VARCHAR},
+                #{supBytxt1,jdbcType=VARCHAR},
+                #{supBytxt2,jdbcType=VARCHAR},
+                #{supBytxt3,jdbcType=VARCHAR},
+                #{supBynum1,jdbcType=NUMERIC},
+                #{supBynum2,jdbcType=NUMERIC},
+                #{supBynum3,jdbcType=NUMERIC},
+                #{updateFlow,jdbcType=NUMERIC},
+                #{manageLyRate,jdbcType=NUMERIC},
+                #{branchNo,jdbcType=VARCHAR},
+                #{updateTime,jdbcType=TIMESTAMP},
+                #{updateBranch,jdbcType=VARCHAR},
+                #{freightPayer,jdbcType=VARCHAR},
+                #{supSelfSettle,jdbcType=VARCHAR},
+                #{supUser,jdbcType=VARCHAR},
+                #{supPwd,jdbcType=VARCHAR},
+                #{transUpflag,jdbcType=VARCHAR},
+                #{wxOpenid,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM t_sup_info
+        WHERE
+        <include refid="whereId"/>
+    </delete>
+    <update id="update" parameterType="com.yx.pos.model.SupInfo">
+        UPDATE t_sup_info SET
+                sup_no=#{supNo,jdbcType=VARCHAR},
+                sup_name=#{supName,jdbcType=VARCHAR},
+                suptype_no=#{suptypeNo,jdbcType=VARCHAR},
+                py_code=#{pyCode,jdbcType=VARCHAR},
+                region_no=#{regionNo,jdbcType=VARCHAR},
+                Manage_type=#{manageType,jdbcType=VARCHAR},
+                sup_man=#{supMan,jdbcType=VARCHAR},
+                deal_man=#{dealMan,jdbcType=VARCHAR},
+                sup_address=#{supAddress,jdbcType=VARCHAR},
+                sup_zip=#{supZip,jdbcType=VARCHAR},
+                sup_email=#{supEmail,jdbcType=VARCHAR},
+                sup_tel=#{supTel,jdbcType=VARCHAR},
+                sup_mobil=#{supMobil,jdbcType=VARCHAR},
+                sup_fax=#{supFax,jdbcType=VARCHAR},
+                sup_acct_bank=#{supAcctBank,jdbcType=VARCHAR},
+                sup_acct_no=#{supAcctNo,jdbcType=VARCHAR},
+                display_flag=#{displayFlag,jdbcType=VARCHAR},
+                init_amt=#{initAmt,jdbcType=NUMERIC},
+                allow_in=#{allowIn,jdbcType=VARCHAR},
+                allow_accout=#{allowAccout,jdbcType=VARCHAR},
+                check_flag=#{checkFlag,jdbcType=VARCHAR},
+                check_day=#{checkDay,jdbcType=NUMERIC},
+                sup_Dist_status=#{supDistStatus,jdbcType=VARCHAR},
+                sup_Stock_status=#{supStockStatus,jdbcType=VARCHAR},
+                sup_ent_regname=#{supEntRegname,jdbcType=VARCHAR},
+                sup_ent_Corporate=#{supEntCorporate,jdbcType=VARCHAR},
+                sup_ent_address=#{supEntAddress,jdbcType=VARCHAR},
+                sup_ent_money=#{supEntMoney,jdbcType=VARCHAR},
+                sup_ent_Valid=#{supEntValid,jdbcType=TIMESTAMP},
+                sup_ent_type=#{supEntType,jdbcType=VARCHAR},
+                sup_ent_licence=#{supEntLicence,jdbcType=VARCHAR},
+                sup_ent_Tlicence=#{supEntTlicence,jdbcType=VARCHAR},
+                sup_ent_Plicense=#{supEntPlicense,jdbcType=VARCHAR},
+                sup_ent_Hlicense=#{supEntHlicense,jdbcType=VARCHAR},
+                sup_ent_deal=#{supEntDeal,jdbcType=VARCHAR},
+                sup_ent_Scope=#{supEntScope,jdbcType=VARCHAR},
+                sup_ent_Industry=#{supEntIndustry,jdbcType=VARCHAR},
+                sup_ent_Certification=#{supEntCertification,jdbcType=VARCHAR},
+                sup_ent_regunit=#{supEntRegunit,jdbcType=VARCHAR},
+                sup_ent_regdate=#{supEntRegdate,jdbcType=TIMESTAMP},
+                sup_memo=#{supMemo,jdbcType=VARCHAR},
+                create_date=#{createDate,jdbcType=TIMESTAMP},
+                create_user=#{createUser,jdbcType=VARCHAR},
+                modify_date=#{modifyDate,jdbcType=TIMESTAMP},
+                modify_user=#{modifyUser,jdbcType=VARCHAR},
+                lock_user=#{lockUser,jdbcType=VARCHAR},
+                IsSysFlag=#{isSysFlag,jdbcType=VARCHAR},
+                sup_bytxt1=#{supBytxt1,jdbcType=VARCHAR},
+                sup_bytxt2=#{supBytxt2,jdbcType=VARCHAR},
+                sup_bytxt3=#{supBytxt3,jdbcType=VARCHAR},
+                sup_bynum1=#{supBynum1,jdbcType=NUMERIC},
+                sup_bynum2=#{supBynum2,jdbcType=NUMERIC},
+                sup_bynum3=#{supBynum3,jdbcType=NUMERIC},
+                update_flow=#{updateFlow,jdbcType=NUMERIC},
+                Manage_ly_rate=#{manageLyRate,jdbcType=NUMERIC},
+                branch_no=#{branchNo,jdbcType=VARCHAR},
+                update_time=#{updateTime,jdbcType=TIMESTAMP},
+                update_branch=#{updateBranch,jdbcType=VARCHAR},
+                Freight_Payer=#{freightPayer,jdbcType=VARCHAR},
+                sup_Self_Settle=#{supSelfSettle,jdbcType=VARCHAR},
+                sup_user=#{supUser,jdbcType=VARCHAR},
+                sup_pwd=#{supPwd,jdbcType=VARCHAR},
+                trans_upflag=#{transUpflag,jdbcType=VARCHAR},
+                wx_openid=#{wxOpenid,jdbcType=VARCHAR}
+        WHERE
+        <include refid="whereId"/>
+    </update>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="SupInfo">
+        SELECT <include refid="columns"/>
+        FROM t_sup_info
+        WHERE
+        <include refid="whereId"/>
+    </select>
+
+    <select id="query" resultMap="SupInfo">
+        SELECT <include refid="columns"/>
+        FROM t_sup_info
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="search" resultMap="SupInfo">
+        SELECT <include refid="columns"/>
+        FROM t_sup_info
+        <include refid="dynamicWhere" />
+    </select>
+    <select id="getOne" resultMap="SupInfo">
+        SELECT <include refid="columns"/>
+        FROM t_sup_info
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getList" resultMap="SupInfo">
+        SELECT <include refid="columns"/>
+        FROM t_sup_info
+        <include refid="oneWhere" />
+    </select>
+
+    <select id="getAll" resultMap="SupInfo">
+        SELECT <include refid="columns"/>
+        FROM t_sup_info
+    </select>
+</mapper>
